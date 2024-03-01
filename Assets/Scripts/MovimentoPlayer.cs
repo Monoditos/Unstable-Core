@@ -46,7 +46,7 @@ public class MovimentoPlayer : MonoBehaviour
                 Debug.Log(hit.distance);
                 Debug.Log(hit.transform.tag);
                 // Check if the collider hit has the tag "Terrain"
-                if (hit.distance > 3f && hit.transform.tag == "Terrain"){
+                if (hit.distance > 4f && hit.transform.tag == "Terrain"){
                     Debug.Log("PAREDE PERTO");
                     // Debug.Log("GHRROKJITHGIJERO");
                     transform.Translate(Vector3.forward * teleportDistance);
