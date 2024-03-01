@@ -8,8 +8,8 @@ public class MovimentoPlayer : MonoBehaviour
     public float rotationSpeed = 90f;
     // Teleport distance
     public float teleportDistance = 3f;
-
-    public bool AllowForwardMovement = true;
+    // Raycast distance
+    public float raycastDistance = 3f;
 
     // Update is called once per frame
     void Update()
@@ -26,22 +26,31 @@ public class MovimentoPlayer : MonoBehaviour
             transform.Rotate(Vector3.up, 90f);
         }
 
-        // Teleportation
         if (Input.GetKeyDown(KeyCode.W))
         {
-            if AllowForwardMovement{
-                // Move the game object forward by teleportDistance units
-            transform.Translate(Vector3.forward * teleportDistance);
+            // Raycast to check for terrain
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, raycastDistance))
+            {
+                Debug.Log("PAREDE RAYCASTED");
+                Debug.Log(hit.distance);
+                // Check if the collider hit has the tag "Terrain"
+                if (hit.distance > 3f){
+                    Debug.Log("MUITO PERTO");
+                    // Debug.Log("GHRROKJITHGIJERO");
+                    transform.Translate(Vector3.forward * teleportDistance);
+                }
+            } else {
+                transform.Translate(Vector3.forward * teleportDistance);
             }
         }
-    }
 
-    void FixedUpdate()
-    {
-        Vector3 fwd = transform.TransformDirection(Vector3.forward);
 
-         if (Physics.Raycast (transform.position, fwd, hit, Reach) && hit.transform.tag == "Terrain") {
-            print("There is Terrain in front of the object!");
-         }
+
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            // Move the game object backward by teleportDistance units
+            transform.Translate(Vector3.back * teleportDistance);
+        }
     }
 }
