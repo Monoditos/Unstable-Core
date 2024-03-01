@@ -323,8 +323,8 @@ MonoBehaviour:
   rotationSpeed: 90
   teleportDistance: 3
   raycastDistance: 3.5
-  rotationDuration: 0.5
-  inputTimeoutDuration: 1
+  rotationDuration: 0.2
+  inputTimeoutDuration: 0.3
 --- !u!65 &7354764078196962030
 BoxCollider:
   m_ObjectHideFlags: 0
