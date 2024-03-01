@@ -12,54 +12,63 @@ public class MovimentoPlayer : MonoBehaviour
     public float raycastDistance = 2.5f;
     // Rotation duration
     public float rotationDuration = 0.5f;
+    // Timeout duration after movement or rotation
+    public float inputTimeoutDuration = 1f;
     // Flag to check if rotation is in progress
     private bool isRotating = false;
+    // Flag to check if input is currently disabled
+    private bool isInputDisabled = false;
     // Target rotation angle
     private Quaternion targetRotation;
 
     // Update is called once per frame
     void Update()
     {
-        // Rotation
-        if (!isRotating && Input.GetKeyDown(KeyCode.A))
+        if (!isInputDisabled)
         {
-            // Calculate target rotation angle
-            targetRotation = transform.rotation * Quaternion.Euler(Vector3.up * -90f);
-            // Start rotating
-            StartCoroutine(RotateOverTime(targetRotation, rotationDuration));
-        }
-        else if (!isRotating && Input.GetKeyDown(KeyCode.D))
-        {
-            // Calculate target rotation angle
-            targetRotation = transform.rotation * Quaternion.Euler(Vector3.up * 90f);
-            // Start rotating
-            StartCoroutine(RotateOverTime(targetRotation, rotationDuration));
-        }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            // Raycast to check for terrain
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, raycastDistance))
+            // Rotation
+            if (!isRotating && Input.GetKeyDown(KeyCode.A))
             {
-                Debug.Log("PAREDE RAYCASTED");
-                Debug.Log(hit.distance);
-                Debug.Log(hit.transform.tag);
-                // Check if the collider hit has the tag "Terrain"
-                if (hit.distance > 4f && hit.transform.tag == "Terrain"){
-                    Debug.Log("PAREDE PERTO");
-                    // Debug.Log("GHRROKJITHGIJERO");
-                    transform.Translate(Vector3.forward * teleportDistance);
-                }
-            } else {
-                transform.Translate(Vector3.forward * teleportDistance);
+                // Calculate target rotation angle
+                targetRotation = transform.rotation * Quaternion.Euler(Vector3.up * -90f);
+                // Start rotating
+                StartCoroutine(RotateOverTime(targetRotation, rotationDuration));
+                StartCoroutine(DisableInputForDuration(inputTimeoutDuration));
             }
-        }
+            else if (!isRotating && Input.GetKeyDown(KeyCode.D))
+            {
+                // Calculate target rotation angle
+                targetRotation = transform.rotation * Quaternion.Euler(Vector3.up * 90f);
+                // Start rotating
+                StartCoroutine(RotateOverTime(targetRotation, rotationDuration));
+                StartCoroutine(DisableInputForDuration(inputTimeoutDuration));
+            }
 
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            // Move the game object backward by teleportDistance units
-            transform.Translate(Vector3.back * teleportDistance);
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                // Raycast to check for terrain
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.forward, out hit, raycastDistance))
+                {
+                    // Check if the collider hit has the tag "Terrain" and if the distance is greater than 4f
+                    if (hit.distance > 4f && hit.transform.CompareTag("Terrain"))
+                    {
+                        transform.Translate(Vector3.forward * teleportDistance);
+                        StartCoroutine(DisableInputForDuration(inputTimeoutDuration));
+                    }
+                }
+                else
+                {
+                    transform.Translate(Vector3.forward * teleportDistance);
+                    StartCoroutine(DisableInputForDuration(inputTimeoutDuration));
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                // Move the game object backward by teleportDistance units
+                transform.Translate(Vector3.back * teleportDistance);
+                StartCoroutine(DisableInputForDuration(inputTimeoutDuration));
+            }
         }
     }
 
@@ -80,5 +89,13 @@ public class MovimentoPlayer : MonoBehaviour
 
         transform.rotation = targetRotation;
         isRotating = false;
+    }
+
+    // Coroutine to disable input for a duration
+    IEnumerator DisableInputForDuration(float duration)
+    {
+        isInputDisabled = true;
+        yield return new WaitForSeconds(duration);
+        isInputDisabled = false;
     }
 }
