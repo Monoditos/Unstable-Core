@@ -17,6 +17,19 @@ public class AudioSystem : Singleton
         musicAudio = Resources.LoadAll<AudioClip>("Audio/Music");
         sfxAudio = Resources.LoadAll<AudioClip>("Audio/SFX");
     }
+
+    public void PlayMusic(string name)
+    {
+        foreach (AudioClip audio in musicAudio)
+        {
+            if (audio.name == name)
+            {
+                musicSource.clip = audio;
+                musicSource.Play();
+                return;
+            }
+        }
+    }
     
 }
 
