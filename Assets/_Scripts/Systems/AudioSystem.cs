@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class AudioSystem : Singleton
 {
-    private Audio[] musicAudio;
-    private Audio[] sfxAudio;
+    [SerializeField]
+    private AudioClip[] musicAudio;
+    [SerializeField]
+    private AudioClip[] sfxAudio;
 
     public AudioSource musicSource;
     public AudioSource sfxSource;
 
     private void Start()
     {
-        musicAudio = Resources.LoadAll<Audio>("Audio/Music");
-        sfxAudio = Resources.LoadAll<Audio>("Audio/SFX");
+        musicAudio = Resources.LoadAll<AudioClip>("Audio/Music");
+        sfxAudio = Resources.LoadAll<AudioClip>("Audio/SFX");
     }
     
 }
