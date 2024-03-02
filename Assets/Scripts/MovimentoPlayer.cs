@@ -55,8 +55,8 @@ public class MovimentoPlayer : MonoBehaviour
             {
                 if (Physics.Raycast(transform.position, transform.forward, out hit, raycastDistance))
                 {
-                    Debug.Log(hit.transform.tag);
-                    Debug.Log(hit.distance);
+                    // Debug.Log(hit.transform.tag);
+                    // Debug.Log(hit.distance);
                     // Check if the collider hit has the tag "Terrain" and if the distance is greater than 4f
                     if (hit.distance > 3.5f && (!hit.transform.CompareTag("Terrain") || !hit.transform.CompareTag("Interactive")))
                     {
