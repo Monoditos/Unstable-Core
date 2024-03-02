@@ -31,15 +31,19 @@ public class Switches : MonoBehaviour
 
     private void Update()
     {
-        StartCoroutine(RandomlySelectFalseEachSecond());
+        if(isOn && EventController.GetFusebox){
+            StartCoroutine(RandomlySelectFalseEachSecond());
+        }
+        
         counter = EventController.GetSwitches;
-        if (counter == 8 || !EventController.GetFusebox)
+        if (counter == 8 || (!EventController.GetFusebox && isOn))
         {
+            EventController.GetFusebox = false;
             isOn = !isOn;
             on.SetActive(isOn);
             off.SetActive(!isOn);
-            EventController.GetFusebox = false;
             EventController.GetSwitches = 0;
+            EventController.AddSwitch(-1);
             Debug.Log("WAH");
         }
     }

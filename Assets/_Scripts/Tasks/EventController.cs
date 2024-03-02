@@ -64,11 +64,13 @@ public class EventController : Singleton
             GetFusebox = true;
             Debug.Log(GetFusebox);
             GetSwitches = 0;
+            StartCoroutine(ActivateFusebox());
             Debug.Log("Fusebox minigame activated!");
         }
         else
         {
             GetHexcode = true;
+            StartCoroutine(ActivateHexcode());
             Debug.Log("Hexcode minigame activated!");
         }
     }
@@ -83,15 +85,13 @@ public class EventController : Singleton
 
     private void Start()
     {
-        // Start coroutines for each minigame
-        StartCoroutine(ActivateFusebox());
-        StartCoroutine(ActivateHexcode());
+        
     }
 
     private void Update()
     {
         // Check for minigame activation
-        if (!GetFusebox && !GetHexcode && Random.value < minigameActivationProbability)
+        if ((!GetFusebox || !GetHexcode) && Random.value < minigameActivationProbability)
         {
             ActivateMinigame();
         }
