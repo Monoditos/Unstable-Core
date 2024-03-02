@@ -15,6 +15,7 @@ public class EventController : Singleton
 
     // Minigame states
     public static int switchCounter = 0;
+    public static int streak = 0;
     private static bool fusebox = false;
     private static bool fuseboxCompleted = false;
     private static bool hexcode = false;
@@ -35,6 +36,11 @@ public class EventController : Singleton
     {
         get { return switchCounter; }
         set { switchCounter = value; }
+    }
+    public static int GetStreak
+    {
+        get { return streak; }
+        set { streak = value; }
     }
 
     public static bool GetFusebox
@@ -133,7 +139,7 @@ public class EventController : Singleton
                 // Minigame time is up, increase instability or decrease it if completed
                 GetFusebox = false;
                 // Debug.Log("Fusebox minigame time up!");
-                DecreaseInstability();                
+                DecreaseInstability();
             }
             else
             {
