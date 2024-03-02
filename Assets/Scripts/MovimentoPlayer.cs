@@ -14,7 +14,7 @@ public class MovimentoPlayer : MonoBehaviour
     // Rotation duration
     public float rotationDuration = 0.1f;
     // Timeout duration after movement or rotation
-    public float inputTimeoutDuration = 1f;
+    public float inputTimeoutDuration = 2f;
 
     public GameObject consoleTxt;
 

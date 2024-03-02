@@ -3026,9 +3026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillGreen: 5
-  total: 8
   greenBar: {fileID: 1547487374}
-  miniGame: {fileID: 945582767}
 --- !u!1 &1739837353
 GameObject:
   m_ObjectHideFlags: 0
@@ -3242,7 +3240,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.56467915
-  m_Center: {x: 0, y: -0.38827848, z: 0}
+  m_Center: {x: 0, y: -0.38827848, z: -2.21}
 --- !u!1 &1797069779
 GameObject:
   m_ObjectHideFlags: 0
@@ -3552,7 +3550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1891125496
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4747,14 +4745,34 @@ PrefabInstance:
       objectReference: {fileID: 1996604079}
     - target: {fileID: 4593764497544384139, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
       propertyPath: rotationDuration
-      value: 0.1
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593764497544384139, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
+      propertyPath: inputTimeoutDuration
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6703979610224402684, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
     - target: {fileID: 8242061000083856388, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
+      propertyPath: m_HDR
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8242061000083856388, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
       propertyPath: m_AllowMSAA
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8242061000083856388, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8242061000083856388, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
+      propertyPath: m_FOVAxisMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8242061000083856388, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
+      propertyPath: m_AllowDynamicResolution
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
