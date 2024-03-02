@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioController : Singleton
+public class AudioController : MonoBehaviour
 {
     [SerializeField]
     private AudioClip[] musicAudio;
