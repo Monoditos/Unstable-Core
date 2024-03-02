@@ -31,8 +31,18 @@ public class Switches : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(EventController.GetFusebox);
         StartCoroutine(RandomlySelectFalseEachSecond());
         counter = EventController.GetSwitches;
+        if (counter == 8 || !EventController.GetFusebox)
+        {
+            isOn = !isOn;
+            on.SetActive(isOn);
+            off.SetActive(!isOn);
+            EventController.GetFusebox = false;
+            EventController.GetSwitches = 0;
+            Debug.Log("WAH");
+        }
     }
     public void OnMouseUp()
     {
