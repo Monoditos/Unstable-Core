@@ -889,26 +889,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 945582768}
     m_Modifications:
-    - target: {fileID: 508437662913598600, guid: 36b79e1a7ded1af4d9d086af6da644cc, type: 3}
-      propertyPath: m_Size.y
-      value: 2.6576655
-      objectReference: {fileID: 0}
-    - target: {fileID: 508437662913598600, guid: 36b79e1a7ded1af4d9d086af6da644cc, type: 3}
-      propertyPath: m_Center.x
-      value: -0.038133364
-      objectReference: {fileID: 0}
-    - target: {fileID: 508437662913598600, guid: 36b79e1a7ded1af4d9d086af6da644cc, type: 3}
-      propertyPath: m_Center.y
-      value: 0.08350921
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038958184055648060, guid: 36b79e1a7ded1af4d9d086af6da644cc, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038958184055648060, guid: 36b79e1a7ded1af4d9d086af6da644cc, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 45
-      objectReference: {fileID: 0}
     - target: {fileID: 1038958184055648060, guid: 36b79e1a7ded1af4d9d086af6da644cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -218.2
@@ -952,10 +932,6 @@ PrefabInstance:
     - target: {fileID: 4051031009301828953, guid: 36b79e1a7ded1af4d9d086af6da644cc, type: 3}
       propertyPath: m_Name
       value: NewLever
-      objectReference: {fileID: 0}
-    - target: {fileID: 4051031009301828953, guid: 36b79e1a7ded1af4d9d086af6da644cc, type: 3}
-      propertyPath: m_Layer
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

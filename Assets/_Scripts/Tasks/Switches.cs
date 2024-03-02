@@ -34,7 +34,7 @@ public class Switches : MonoBehaviour
         StartCoroutine(RandomlySelectFalseEachSecond());
         counter = SwitchCount.GetSwitches;
     }
-    private void OnMouseUp()
+    public void OnMouseUp()
     {
         isOn = !isOn;
         on.SetActive(isOn);
