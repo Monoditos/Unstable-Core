@@ -3586,8 +3586,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6adc6e13ffa37474c9642b83740ca870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordTxt: {fileID: 772641337}
-  answerTxt: {fileID: 1937249994}
+  wordTxt: {fileID: 0}
+  answerTxt: {fileID: 0}
   codeList:
   - {fileID: 11400000, guid: 523b9465a88b48f439bac77bc7bf8129, type: 2}
   - {fileID: 11400000, guid: b1be0b1c9a53b7e4f8f0c55b5d548dc3, type: 2}
@@ -4745,6 +4745,10 @@ PrefabInstance:
       propertyPath: consoleTxt
       value: 
       objectReference: {fileID: 1996604079}
+    - target: {fileID: 4593764497544384139, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
+      propertyPath: rotationDuration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6703979610224402684, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
       propertyPath: m_Name
       value: Character

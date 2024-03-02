@@ -8,22 +8,37 @@ public class EventController : Singleton
 
     // Constants for minigame probabilities and durations
     private const float minigameActivationProbability = 0.1f; // Adjust this value as needed
-    private const float minigameDuration = 30f; // Duration of minigames in seconds
+    private const float minigameDuration = 10f; // Duration of minigames in seconds
 
-    private static float fuseboxDuration = 30f;
-
-    private static float hexcodeDuration = 30f;
+    private static float fuseboxDuration = 10f;
+    private static float hexcodeDuration = 10f;
 
     // Minigame states
-    private static bool fuseboxActive = false;
-
     public static int switchCounter = 0;
     private static bool fusebox = false;
     private static bool hexcode = false;
-    private static bool hexcodeActive = false;
 
     // Countdown timer for active minigames
     private static float minigameTimer = 0f;
+
+
+    public static int GetSwitches
+    {
+        get { return switchCounter; }
+        set { switchCounter = value; }
+    }
+
+    public static bool GetFusebox
+    {
+        get { return fusebox; }
+        set { fusebox = value; }
+    }
+
+    public static bool GetHexcode
+    {
+        get { return hexcode; }
+        set { hexcode = value; }
+    }
 
     // REACTOR LOGIC
 
@@ -44,22 +59,24 @@ public class EventController : Singleton
     private void ActivateMinigame()
     {
         // Determine which minigame to activate (for example, randomly)
-        if (Random.value < 0.5f)
+        if (Random.value > 0.0001f)
         {
-            fuseboxActive = true;
+            GetFusebox = true;
+            Debug.Log(GetFusebox);
+            GetSwitches = 0;
             Debug.Log("Fusebox minigame activated!");
         }
         else
         {
-            hexcodeActive = true;
+            GetHexcode = true;
             Debug.Log("Hexcode minigame activated!");
         }
     }
 
     private void DeactivateMinigames()
     {
-        fuseboxActive = false;
-        hexcodeActive = false;
+        GetFusebox = false;
+        GetHexcode = false;
         // Reset the timer for the next activation
         minigameTimer = minigameDuration;
     }
@@ -74,7 +91,7 @@ public class EventController : Singleton
     private void Update()
     {
         // Check for minigame activation
-        if (!fuseboxActive && !hexcodeActive && Random.value < minigameActivationProbability)
+        if (!GetFusebox && !GetHexcode && Random.value < minigameActivationProbability)
         {
             ActivateMinigame();
         }
@@ -87,37 +104,28 @@ public class EventController : Singleton
         while (true)
         {
             yield return new WaitForSeconds(fuseboxDuration);
-            if (fuseboxActive)
+            if (GetFusebox)
             {
                 // Minigame time is up, increase instability or decrease it if completed
-                fuseboxActive = false;
+                GetFusebox = false;
                 Debug.Log("Fusebox minigame time up!");
                 IncreaseInstability();
-            } else {
+            }
+            else
+            {
                 DecreaseInstability();
             }
         }
     }
 
-    public static int GetSwitches
-    {
-        get { return switchCounter; }
-        set { switchCounter = value; }
-    }
-
-    public static bool GetFusebox
-    {
-        get {return fusebox;}
-        set {fusebox = value;}
-    }
-    
     public static void AddSwitch(int count)
     {
         switchCounter += count;
         if (switchCounter == 8)
         {
-            Debug.Log("Fusebox is fixed!");
-            fuseboxActive = false;
+            // Debug.Log("Fusebox is fixed!");
+            // GetFusebox = false;
+            // GetSwitches = 0;
         }
     }
 
@@ -126,13 +134,15 @@ public class EventController : Singleton
         while (true)
         {
             yield return new WaitForSeconds(hexcodeDuration);
-            if (hexcodeActive)
+            if (GetHexcode)
             {
                 // Minigame time is up, increase instability or decrease it if completed
-                hexcodeActive = false;
+                GetHexcode = false;
                 Debug.Log("Hexcode minigame time up!");
                 IncreaseInstability();
-            } else {
+            }
+            else
+            {
                 DecreaseInstability();
             }
         }
