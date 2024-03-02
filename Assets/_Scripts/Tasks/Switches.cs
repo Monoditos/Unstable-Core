@@ -5,15 +5,34 @@ using UnityEngine.UI;
 public class Switches : MonoBehaviour
 {
     public SpriteRenderer on, off;
+    public int counter;
     public bool isOn;
+    public float randomValue;
+
     void Start()
     {
+        randomValue = Random.value;
+        Debug.Log("Random Value: " + randomValue);
+        if (randomValue < 0.40)
+        {
+            isOn = true;
+        }
+        else
+        {
+            isOn = false;
+        }
+        counter = SwitchCount.GetSwitches;
         on.enabled = isOn;
         off.enabled = !isOn;
         if (isOn)
         {
-            SwitchCount.SwitchChange(1);
+            SwitchCount.AddSwitch(1);
         }
+    }
+
+    private void Update()
+    {
+        counter = SwitchCount.GetSwitches;
     }
     private void OnMouseUp()
     {
@@ -22,11 +41,11 @@ public class Switches : MonoBehaviour
         off.enabled = !isOn;
         if (isOn)
         {
-            SwitchCount.Instance.SwitchChange(1);
+            SwitchCount.AddSwitch(1);
         }
         else
         {
-            SwitchCount.Instance.SwitchChange(-1);
+            SwitchCount.AddSwitch(-1);
         }
     }
 }
