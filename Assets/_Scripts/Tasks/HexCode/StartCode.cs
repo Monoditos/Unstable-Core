@@ -34,12 +34,9 @@ public class StartCode : MonoBehaviour
         }
         else
         {
-            Debug.Log("No loot dropped");
             return null;
         }
-
     }
-
 
 
 
