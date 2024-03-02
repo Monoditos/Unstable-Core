@@ -57,7 +57,7 @@ public class Switches : MonoBehaviour
             isOn = false;
             on.SetActive(isOn);
             off.SetActive(!isOn);
-            SwitchCount.AddSwitch(-1);
+            EventController.AddSwitch(-1);
             yield return new WaitForSeconds(Random.value*2f);
         }
         yield return new WaitForSeconds(2f);

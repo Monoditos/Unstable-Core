@@ -12,7 +12,7 @@ public class MovimentoPlayer : MonoBehaviour
     // Raycast distance
     public float raycastDistance = 2.5f;
     // Rotation duration
-    public float rotationDuration = 0.5f;
+    public float rotationDuration = 0.1f;
     // Timeout duration after movement or rotation
     public float inputTimeoutDuration = 1f;
 
