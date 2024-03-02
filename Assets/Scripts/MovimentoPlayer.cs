@@ -27,11 +27,11 @@ public class MovimentoPlayer : MonoBehaviour
     // Flag to check if rotation is in progress
     private bool isRotating = false;
     // Flag to check if input is currently disabled
-    private bool isInputDisabled = false;
+    public bool isInputDisabled = false;
     // Target rotation angle
     private Quaternion targetRotation;
 
-    private bool menuopen = false;
+    public bool menuopen = false;
 
     void Start(){
         TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
@@ -94,15 +94,16 @@ public class MovimentoPlayer : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
                     string objectName = hit.transform.name;
-                    if (!menuopen)
+                    if (menuopen)
                     {
+                        menuopen = false;
+                        isInputDisabled = false;
+                        Debug.Log(isInputDisabled);
+                        CloseMenu(objectName);
+                    } else {
                         menuopen = true;
                         isInputDisabled = true;
                         OpenMenu(objectName);
-                    } else {
-                        menuopen = false;
-                        isInputDisabled = false;
-                        CloseMenu(objectName);
                     }
                     
     
@@ -209,6 +210,10 @@ public class MovimentoPlayer : MonoBehaviour
     {
         isInputDisabled = true;
         yield return new WaitForSeconds(duration);
-        isInputDisabled = false;
+        if(menuopen){
+            isInputDisabled = true;
+        } else {
+            isInputDisabled = false;
+        }
     }
 }
