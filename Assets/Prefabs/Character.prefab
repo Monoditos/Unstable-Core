@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 7354764078196962030}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -302,12 +302,12 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 1.0339816
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.48300922, z: 0}
 --- !u!114 &4593764497544384139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,6 +325,7 @@ MonoBehaviour:
   raycastDistance: 3.5
   rotationDuration: 0.15
   inputTimeoutDuration: 0.2
+  consoleTxt: {fileID: 0}
 --- !u!65 &7354764078196962030
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovimentoPlayer : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class MovimentoPlayer : MonoBehaviour
     public float rotationDuration = 0.5f;
     // Timeout duration after movement or rotation
     public float inputTimeoutDuration = 1f;
+
+    public GameObject consoleTxt;
+
     // Flag to check if rotation is in progress
     private bool isRotating = false;
     // Flag to check if input is currently disabled
@@ -24,6 +28,9 @@ public class MovimentoPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Raycast to check for terrain
+        RaycastHit hit;
+
         if (!isInputDisabled)
         {
             // Rotation
@@ -46,12 +53,12 @@ public class MovimentoPlayer : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.W))
             {
-                // Raycast to check for terrain
-                RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.forward, out hit, raycastDistance))
                 {
+                    Debug.Log(hit.transform.tag);
+                    Debug.Log(hit.distance);
                     // Check if the collider hit has the tag "Terrain" and if the distance is greater than 4f
-                    if (hit.distance > 4f && hit.transform.CompareTag("Terrain"))
+                    if (hit.distance > 3.5f && (!hit.transform.CompareTag("Terrain") || !hit.transform.CompareTag("Interactive")))
                     {
                         transform.Translate(Vector3.forward * teleportDistance);
                         StartCoroutine(DisableInputForDuration(inputTimeoutDuration));
@@ -63,11 +70,15 @@ public class MovimentoPlayer : MonoBehaviour
                     StartCoroutine(DisableInputForDuration(inputTimeoutDuration));
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.S))
-            {
-                // Move the game object backward by teleportDistance units
-                transform.Translate(Vector3.back * teleportDistance);
-                StartCoroutine(DisableInputForDuration(inputTimeoutDuration));
+        }
+
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 3f))
+        {
+            if (hit.transform.CompareTag("Interactive"))
+            {   
+                consoleTxt.SetActive(true);
+            } else {
+                consoleTxt.SetActive(false);
             }
         }
     }
