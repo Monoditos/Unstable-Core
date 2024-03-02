@@ -116,6 +116,8 @@ GameObject:
   - component: {fileID: 7181131534928016605}
   - component: {fileID: 8242061000083856388}
   - component: {fileID: 585117050911737497}
+  - component: {fileID: 6992419222117748211}
+  - component: {fileID: 3093200420393840192}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -148,7 +150,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.59792805, g: 0.81886786, b: 0.63216585, a: 0}
+  m_BackGroundColor: {r: 0.5772944, g: 0.87169814, b: 0.62377924, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -183,7 +185,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -197,6 +199,74 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6182020135066253646}
   m_Enabled: 1
+--- !u!114 &6992419222117748211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6182020135066253646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433faa8b758afed4f9295b193c697276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _PixelationFactor: 0.574
+  _ColorEmulationMode: 1
+  _FullscreenColorDepth: {x: 256, y: 256, z: 256}
+  _FullscreenDitherDepth: {x: 32, y: 32, z: 32}
+  _DitheringMatrixSize: 2
+  _DitheringScale: 0
+  _InterlacingSize: 1
+  _PostProcessShader: {fileID: 4800000, guid: 56d52fd5b7c6911468179e5a7359ce0e, type: 3}
+  _PostProcessShaderAccurate: {fileID: 4800000, guid: 2ebed186567d3c244a87538744a62920, type: 3}
+  _PixelationShader: {fileID: 4800000, guid: f2da0e2a14a532548b5db043244b3df1, type: 3}
+  _InterlacingShader: {fileID: 4800000, guid: 03ebd34214b41ef459d7ee6753b062be, type: 3}
+--- !u!114 &3093200420393840192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6182020135066253646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86832f84a0cf34eb9b89129d49b7a15e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startConfig: {fileID: 0}
+  crtRenderSettings: {fileID: 11400000, guid: 2d929546960894d169f1999a321e4ff4, type: 2}
+  _runtimeMaterial: {fileID: 0}
+  data:
+    pixelationAmount: 1
+    maxColorChannels:
+      red: 0
+      green: 0
+      blue: 0
+      greyScale: 0
+    dithering4: 0
+    dithering8: 0
+    vignette: 0.101
+    innerCurve: 1.4
+    monitorCurve: 0.057
+    monitorInnerSize:
+      width: 0
+      height: 0
+    monitorOutterSize:
+      width: 0
+      height: 0
+    zoom: 0.95
+    monitorRoundness: 0.2
+    monitorTexture: {fileID: 0}
+    monitorColor: {r: 0, g: 0, b: 0, a: 0.5254902}
+    innerMonitorDarkness: 0.597
+    innerMonitorShine: 0.315
+    colorScans:
+      greenChannelMultiplier: -0.079
+      redBlueChannelMultiplier: 0.056
+      sizeMultiplier: 4.68
+    innerMonitorShineRadius: -0.087
+    innerMonitorShineCurve: 10
 --- !u!1 &6703979610224402684
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,9 +393,16 @@ MonoBehaviour:
   rotationSpeed: 90
   teleportDistance: 3
   raycastDistance: 3.5
-  rotationDuration: 0.15
-  inputTimeoutDuration: 0.2
+  rotationDuration: 0.1
+  inputTimeoutDuration: 0.25
+  eventController: {fileID: 0}
   consoleTxt: {fileID: 0}
+  TerminalConsole: {fileID: 0}
+  FuseboxMenu: {fileID: 0}
+  HexMenu: {fileID: 0}
+  QTEMenu: {fileID: 0}
+  isInputDisabled: 0
+  menuopen: 0
 --- !u!65 &7354764078196962030
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -9,8 +9,8 @@ public class Switches : MonoBehaviour
     public bool isOn;
     public float randomValue, randomChange;
 
-    void Start()
-    {
+    private void OnEnable() {
+
         randomValue = Random.value;
         if (randomValue < 0.40)
         {
