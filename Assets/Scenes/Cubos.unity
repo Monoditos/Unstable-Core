@@ -600,6 +600,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872ddc1c1a8588c429bb7907a1b381a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fuseboxMenu: {fileID: 945582767}
+  hexMenu: {fileID: 1891125495}
+  QTEMenu: {fileID: 485716846}
 --- !u!4 &280563356
 Transform:
   m_ObjectHideFlags: 0
@@ -836,7 +839,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &485716847
 RectTransform:
   m_ObjectHideFlags: 0
@@ -873,7 +876,6 @@ MonoBehaviour:
   qteGen: 0
   waiting: 0
   correct: 0
-  countingDown: 0
 --- !u!1 &499649270
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,6 +973,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5017385223383764439, guid: d1ece20f6d085ff458629ea218f1aaf2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017385223383764439, guid: d1ece20f6d085ff458629ea218f1aaf2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017385223383764439, guid: d1ece20f6d085ff458629ea218f1aaf2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5017385224026066832, guid: d1ece20f6d085ff458629ea218f1aaf2, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -6261,13 +6275,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4593764497544384139, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
+      propertyPath: HexMenu
+      value: 
+      objectReference: {fileID: 1891125495}
+    - target: {fileID: 4593764497544384139, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
+      propertyPath: QTEMenu
+      value: 
+      objectReference: {fileID: 485716846}
+    - target: {fileID: 4593764497544384139, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
       propertyPath: consoleTxt
       value: 
       objectReference: {fileID: 1996604079}
     - target: {fileID: 4593764497544384139, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
+      propertyPath: FuseboxMenu
+      value: 
+      objectReference: {fileID: 945582767}
+    - target: {fileID: 4593764497544384139, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
       propertyPath: TerminalConsole
       value: 
       objectReference: {fileID: 678891728}
+    - target: {fileID: 4593764497544384139, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
+      propertyPath: eventController
+      value: 
+      objectReference: {fileID: 280563354}
     - target: {fileID: 4593764497544384139, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
       propertyPath: rotationDuration
       value: 0.1
