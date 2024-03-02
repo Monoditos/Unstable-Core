@@ -17,6 +17,7 @@ public class MovimentoPlayer : MonoBehaviour
     public float inputTimeoutDuration = 2f;
 
     public GameObject consoleTxt;
+    public GameObject TerminalConsole;
 
     // Flag to check if rotation is in progress
     private bool isRotating = false;
@@ -24,6 +25,11 @@ public class MovimentoPlayer : MonoBehaviour
     private bool isInputDisabled = false;
     // Target rotation angle
     private Quaternion targetRotation;
+
+    void Start(){
+        TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
+        TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
+    }
 
     // Update is called once per frame
     void Update()
@@ -55,8 +61,8 @@ public class MovimentoPlayer : MonoBehaviour
             {
                 if (Physics.Raycast(transform.position, transform.forward, out hit, raycastDistance))
                 {
-                    Debug.Log(hit.transform.tag);
-                    Debug.Log(hit.distance);
+                    // Debug.Log(hit.transform.tag);
+                    // Debug.Log(hit.distance);
                     // Check if the collider hit has the tag "Terrain" and if the distance is greater than 4f
                     if (hit.distance > 3.5f && (!hit.transform.CompareTag("Terrain") || !hit.transform.CompareTag("Interactive")))
                     {
@@ -77,12 +83,47 @@ public class MovimentoPlayer : MonoBehaviour
             if (hit.transform.CompareTag("Interactive"))
             {   
                 consoleTxt.SetActive(true);
+                // Check if Enter key is pressed
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    string objectName = hit.transform.name;
+                    OpenMenu(objectName);
+                }
             } else {
                 consoleTxt.SetActive(false);
             }
-        }
+        }   
     }
 
+    void OpenMenu(string objectName)
+    {
+        // Logic to open the right menu based on objectName
+        switch (objectName)
+        {
+            case "Fusebox":
+                // Open Fusebox menu
+                Debug.Log("Opening Fusebox menu...");
+                break;
+
+            case "HexcodePanel":
+                // Open HexcodePanel menu
+                Debug.Log("Opening HexcodePanel menu...");
+                break;
+
+            case "Terminal":
+                Debug.Log("Opening Terminal menu...");
+                TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 400);
+                TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 905);
+                Transform childTransform = TerminalConsole.transform.Find("Viewport");
+                childTransform.gameObject.SetActive(true);
+                break;
+
+            default:
+                // Default case or handle unrecognized object names
+                Debug.Log("No menu found for object: " + objectName);
+                break;
+        }
+    }
     // Coroutine to rotate over time
     IEnumerator RotateOverTime(Quaternion targetRotation, float duration)
     {

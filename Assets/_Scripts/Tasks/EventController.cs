@@ -7,7 +7,7 @@ public class EventController : Singleton
     public static EventController instance;
 
     // Constants for minigame probabilities and durations
-    private const float minigameActivationProbability = 0.001f; // Adjust this value as needed
+    private const float minigameActivationProbability = 0.0007f; // Adjust this value as needed
     private const float minigameDuration = 10f; // Duration of minigames in seconds
 
     private static float fuseboxDuration = 10f;
