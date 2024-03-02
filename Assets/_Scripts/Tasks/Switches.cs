@@ -52,15 +52,15 @@ public class Switches : MonoBehaviour
     IEnumerator RandomlySelectFalseEachSecond()
     {
         randomChange = Random.value;
-        if (randomChange <= 0.0003 && isOn == true)
+        if (randomChange <= 0.00003 && isOn == true)
         {
             isOn = false;
             on.SetActive(isOn);
             off.SetActive(!isOn);
             SwitchCount.AddSwitch(-1);
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(Random.value*2f);
         }
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
     }
 }
 
