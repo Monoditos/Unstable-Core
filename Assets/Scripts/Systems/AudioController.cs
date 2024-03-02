@@ -19,7 +19,7 @@ public class AudioController : MonoBehaviour
 
         //PlayMusic("ambient_noise_01");
         
-        PlayMusic("music_ES01");
+        PlaySoundEffect("ambient_noise_01");
     }
 
     public void PlayMusic(string name)
@@ -34,6 +34,18 @@ public class AudioController : MonoBehaviour
             }
         }
     }
-    
+
+    public void PlaySoundEffect(string name)
+    {
+        foreach (AudioClip audio in sfxAudio)
+        {
+            if (audio.name == name)
+            {
+                sfxSource.clip = audio;
+                sfxSource.Play();
+                return;
+            }
+        }
+    }
 }
 
