@@ -10,8 +10,8 @@ public class EventController : Singleton
     private const float minigameActivationProbability = 0.0007f; // Adjust this value as needed
     private const float minigameDuration = 10f; // Duration of minigames in seconds
 
-    private static float fuseboxDuration = 10f;
-    private static float hexcodeDuration = 10f;
+    private static float fuseboxDuration = 15f;
+    private static float hexcodeDuration = 20f;
 
     // Minigame states
     public static int switchCounter = 0;
@@ -22,6 +22,13 @@ public class EventController : Singleton
 
     // Countdown timer for active minigames
     private static float minigameTimer = 0f;
+
+    public static int stability = 100;
+
+    public GameObject fuseboxMenu;
+    public GameObject hexMenu;
+    public GameObject QTEMenu;
+
 
 
     public static int GetSwitches
@@ -59,13 +66,15 @@ public class EventController : Singleton
     private void IncreaseInstability()
     {
         // Increase reactor instability when a minigame is failed
-        // Debug.Log("Instability increased!");
+        Debug.Log("Instability increased!");
+        stability += 10;
     }
 
     private void DecreaseInstability()
     {
         // Increase reactor instability when a minigame is failed
-        // Debug.Log("Instability decreased!");
+        Debug.Log("Instability decreased!");
+        stability -= 10;
     }
 
     // MINIGAME EVENT CONTROLLER
@@ -79,12 +88,13 @@ public class EventController : Singleton
             // Debug.Log(GetFusebox);
             GetSwitches = 0;
             StartCoroutine(ActivateFusebox());
-            // Debug.Log("Fusebox minigame activated!");
+            Debug.Log("Fuse anomaly. " + fuseboxDuration + "s until critical failure.");
         }
         else
         {
             GetHexcode = true;
             StartCoroutine(ActivateHexcode());
+            Debug.Log("Cooling binaries anomaly. " + hexcodeDuration + "s until critical failure.");
             // Debug.Log("Hexcode minigame activated!");
         }
     }
@@ -123,13 +133,16 @@ public class EventController : Singleton
                 // Minigame time is up, increase instability or decrease it if completed
                 GetFusebox = false;
                 // Debug.Log("Fusebox minigame time up!");
-                IncreaseInstability();
+                DecreaseInstability();
+                fuseboxMenu.gameObject.SetActive(false);
+                
             }
             else
             {
                 GetFusebox = false;
                 GetFuseboxCompleted = false;
                 IncreaseInstability();
+                fuseboxMenu.gameObject.SetActive(false);
                 Debug.Log("Fusebox minigame time up!");
                 break;
             }
@@ -156,7 +169,8 @@ public class EventController : Singleton
                 // Minigame time is up, increase instability or decrease it if completed
                 GetHexcode = false;
                 // Debug.Log("Hexcode minigame time up!");
-                IncreaseInstability();
+                DecreaseInstability();
+                hexMenu.gameObject.SetActive(false);
             }
             else
             {
@@ -164,6 +178,7 @@ public class EventController : Singleton
                 GetHexcodeCompleted = false;
                 Debug.Log("Hexcode minigame time up!");
                 IncreaseInstability();
+                hexMenu.gameObject.SetActive(false);
             }
         }
     }

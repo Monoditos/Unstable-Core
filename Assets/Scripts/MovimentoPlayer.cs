@@ -16,17 +16,22 @@ public class MovimentoPlayer : MonoBehaviour
     // Timeout duration after movement or rotation
     public float inputTimeoutDuration = 2f;
 
+    public GameObject eventController;
     public GameObject consoleTxt;
     public GameObject TerminalConsole;
+
+    public GameObject FuseboxMenu;
+    public GameObject HexMenu;
+    public GameObject QTEMenu;
 
     // Flag to check if rotation is in progress
     private bool isRotating = false;
     // Flag to check if input is currently disabled
-    private bool isInputDisabled = false;
+    public bool isInputDisabled = false;
     // Target rotation angle
     private Quaternion targetRotation;
 
-    private bool menuopen = false;
+    public bool menuopen = false;
 
     void Start(){
         TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
@@ -89,15 +94,16 @@ public class MovimentoPlayer : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
                     string objectName = hit.transform.name;
-                    if (!menuopen)
+                    if (menuopen)
                     {
+                        menuopen = false;
+                        isInputDisabled = false;
+                        Debug.Log(isInputDisabled);
+                        CloseMenu(objectName);
+                    } else {
                         menuopen = true;
                         isInputDisabled = true;
                         OpenMenu(objectName);
-                    } else {
-                        menuopen = false;
-                        isInputDisabled = false;
-                        CloseMenu(objectName);
                     }
                     
     
@@ -116,19 +122,26 @@ public class MovimentoPlayer : MonoBehaviour
             case "Fusebox":
                 // Open Fusebox menu
                 Debug.Log("Opening Fusebox menu...");
+                FuseboxMenu.gameObject.SetActive(true);
                 break;
 
             case "HexcodePanel":
                 // Open HexcodePanel menu
                 Debug.Log("Opening HexcodePanel menu...");
+                HexMenu.gameObject.SetActive(true);
                 break;
 
             case "Terminal":
-                Debug.Log("Opening Terminal menu...");
+                Debug.Log("Terminal:");
+                Debug.Log("Reactor Stability: " + EventController.stability + "%");
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 400);
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 905);
                 Transform childTransform = TerminalConsole.transform.Find("Viewport");
                 childTransform.gameObject.SetActive(true);
+                break;
+
+            case "QTE":
+                QTEMenu.gameObject.SetActive(true);
                 break;
 
             default:
@@ -146,11 +159,13 @@ public class MovimentoPlayer : MonoBehaviour
             case "Fusebox":
                 // Open Fusebox menu
                 Debug.Log("Closing Fusebox menu...");
+                FuseboxMenu.gameObject.SetActive(false);
                 break;
 
             case "HexcodePanel":
                 // Open HexcodePanel menu
                 Debug.Log("Closing HexcodePanel menu...");
+                HexMenu.gameObject.SetActive(false);
                 break;
 
             case "Terminal":
@@ -159,6 +174,10 @@ public class MovimentoPlayer : MonoBehaviour
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0);
                 Transform childTransform = TerminalConsole.transform.Find("Viewport");
                 childTransform.gameObject.SetActive(false);
+                break;
+            
+            case "QTE":
+                QTEMenu.gameObject.SetActive(false);
                 break;
 
             default:
@@ -191,6 +210,10 @@ public class MovimentoPlayer : MonoBehaviour
     {
         isInputDisabled = true;
         yield return new WaitForSeconds(duration);
-        isInputDisabled = false;
+        if(menuopen){
+            isInputDisabled = true;
+        } else {
+            isInputDisabled = false;
+        }
     }
 }
