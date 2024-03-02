@@ -7,7 +7,7 @@ public class Switches : MonoBehaviour
     public SpriteRenderer on, off;
     public int counter;
     public bool isOn;
-    public float randomValue;
+    public float randomValue, randomChange;
 
     void Start()
     {
@@ -31,6 +31,7 @@ public class Switches : MonoBehaviour
 
     private void Update()
     {
+        StartCoroutine(RandomlySelectFalseEachSecond());
         counter = SwitchCount.GetSwitches;
     }
     private void OnMouseUp()
@@ -46,5 +47,20 @@ public class Switches : MonoBehaviour
         {
             SwitchCount.AddSwitch(-1);
         }
+    }
+
+    IEnumerator RandomlySelectFalseEachSecond()
+    {
+        randomChange = Random.value;
+        Debug.Log(randomChange);
+        if (randomChange <= 0.001 && isOn == true)
+        {
+            isOn = false;
+            on.enabled = isOn;
+            off.enabled = !isOn;
+            SwitchCount.AddSwitch(-1);
+            yield return new WaitForSeconds(1.5f);
+        }
+        yield return new WaitForSeconds(1.5f);
     }
 }

@@ -815,6 +815,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5017385224150913177, guid: d1ece20f6d085ff458629ea218f1aaf2, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.095
+      objectReference: {fileID: 0}
     - target: {fileID: 5017385224150913179, guid: d1ece20f6d085ff458629ea218f1aaf2, type: 3}
       propertyPath: m_Name
       value: Logger
