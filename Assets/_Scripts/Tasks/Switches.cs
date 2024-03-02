@@ -12,7 +12,6 @@ public class Switches : MonoBehaviour
     void Start()
     {
         randomValue = Random.value;
-        Debug.Log("Random Value: " + randomValue);
         if (randomValue < 0.40)
         {
             isOn = true;
