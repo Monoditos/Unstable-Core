@@ -14,7 +14,7 @@ public class MovimentoPlayer : MonoBehaviour
     // Rotation duration
     public float rotationDuration = 0.1f;
     // Timeout duration after movement or rotation
-    public float inputTimeoutDuration = 1f;
+    public float inputTimeoutDuration = 2f;
 
     public GameObject consoleTxt;
 
@@ -34,7 +34,7 @@ public class MovimentoPlayer : MonoBehaviour
         if (!isInputDisabled)
         {
             // Rotation
-            if (!isRotating && Input.GetKeyDown(KeyCode.A))
+            if (!isRotating && Input.GetKey(KeyCode.A))
             {
                 // Calculate target rotation angle
                 targetRotation = transform.rotation * Quaternion.Euler(Vector3.up * -90f);
@@ -42,7 +42,7 @@ public class MovimentoPlayer : MonoBehaviour
                 StartCoroutine(RotateOverTime(targetRotation, rotationDuration));
                 StartCoroutine(DisableInputForDuration(inputTimeoutDuration));
             }
-            else if (!isRotating && Input.GetKeyDown(KeyCode.D))
+            else if (!isRotating && Input.GetKey(KeyCode.D))
             {
                 // Calculate target rotation angle
                 targetRotation = transform.rotation * Quaternion.Euler(Vector3.up * 90f);
@@ -51,7 +51,7 @@ public class MovimentoPlayer : MonoBehaviour
                 StartCoroutine(DisableInputForDuration(inputTimeoutDuration));
             }
 
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKey(KeyCode.W))
             {
                 if (Physics.Raycast(transform.position, transform.forward, out hit, raycastDistance))
                 {
