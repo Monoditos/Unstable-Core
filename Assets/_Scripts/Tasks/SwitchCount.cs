@@ -17,10 +17,9 @@ public class SwitchCount : Singleton
     public static void AddSwitch(int count)
     {
         counter += count;
-        Debug.Log("Switches = " + SwitchCount.GetSwitches);
         if (counter == 8)
         {
-            Debug.Log("WOW");
+            Debug.Log("Fusebox is fixed!");
         }
     }
 
