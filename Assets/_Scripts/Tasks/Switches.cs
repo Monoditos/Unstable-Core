@@ -31,7 +31,6 @@ public class Switches : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(EventController.GetFusebox);
         StartCoroutine(RandomlySelectFalseEachSecond());
         counter = EventController.GetSwitches;
         if (counter == 8 || !EventController.GetFusebox)
@@ -68,7 +67,7 @@ public class Switches : MonoBehaviour
             on.SetActive(isOn);
             off.SetActive(!isOn);
             EventController.AddSwitch(-1);
-            yield return new WaitForSeconds(Random.value*2f);
+            yield return new WaitForSeconds(Random.value * 2f);
         }
         yield return new WaitForSeconds(2f);
     }
