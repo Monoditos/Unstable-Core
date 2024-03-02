@@ -1344,7 +1344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5017385224150913179, guid: d1ece20f6d085ff458629ea218f1aaf2, type: 3}
       propertyPath: m_Name
-      value: Logger
+      value: Mogger
       objectReference: {fileID: 0}
     - target: {fileID: 5017385224503454958, guid: d1ece20f6d085ff458629ea218f1aaf2, type: 3}
       propertyPath: m_AnchorMax.x
