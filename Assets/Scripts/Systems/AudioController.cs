@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioSystem : Singleton
+public class AudioController : Singleton
 {
     [SerializeField]
     private AudioClip[] musicAudio;
@@ -16,6 +16,8 @@ public class AudioSystem : Singleton
     {
         musicAudio = Resources.LoadAll<AudioClip>("Audio/Music");
         sfxAudio = Resources.LoadAll<AudioClip>("Audio/SFX");
+
+        PlayMusic("music_ES01");
     }
 
     public void PlayMusic(string name)
