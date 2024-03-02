@@ -7,7 +7,7 @@ public class EventController : Singleton
     public static EventController instance;
 
     // Constants for minigame probabilities and durations
-    private const float minigameActivationProbability = 0.1f; // Adjust this value as needed
+    private const float minigameActivationProbability = 0.001f; // Adjust this value as needed
     private const float minigameDuration = 10f; // Duration of minigames in seconds
 
     private static float fuseboxDuration = 10f;
@@ -16,7 +16,9 @@ public class EventController : Singleton
     // Minigame states
     public static int switchCounter = 0;
     private static bool fusebox = false;
+    private static bool fuseboxCompleted = false;
     private static bool hexcode = false;
+    private static bool hexcodeCompleted = false;
 
     // Countdown timer for active minigames
     private static float minigameTimer = 0f;
@@ -34,10 +36,22 @@ public class EventController : Singleton
         set { fusebox = value; }
     }
 
+    public static bool GetFuseboxCompleted
+    {
+        get { return fuseboxCompleted; }
+        set { fuseboxCompleted = value; }
+    }
+
     public static bool GetHexcode
     {
         get { return hexcode; }
         set { hexcode = value; }
+    }
+
+    public static bool GetHexcodeCompleted
+    {
+        get { return hexcodeCompleted; }
+        set { hexcodeCompleted = value; }
     }
 
     // REACTOR LOGIC
@@ -62,7 +76,6 @@ public class EventController : Singleton
         if (Random.value > 0.0001f)
         {
             GetFusebox = true;
-            Debug.Log(GetFusebox);
             GetSwitches = 0;
             StartCoroutine(ActivateFusebox());
             Debug.Log("Fusebox minigame activated!");
@@ -91,7 +104,7 @@ public class EventController : Singleton
     private void Update()
     {
         // Check for minigame activation
-        if ((!GetFusebox || !GetHexcode) && Random.value < minigameActivationProbability)
+        if (!GetFusebox && !GetHexcode && (Random.value < minigameActivationProbability))
         {
             ActivateMinigame();
         }
@@ -104,16 +117,22 @@ public class EventController : Singleton
         while (true)
         {
             yield return new WaitForSeconds(fuseboxDuration);
-            if (GetFusebox)
+            if (GetFuseboxCompleted)
             {
                 // Minigame time is up, increase instability or decrease it if completed
                 GetFusebox = false;
-                Debug.Log("Fusebox minigame time up!");
-                IncreaseInstability();
+                GetFuseboxCompleted = false;
+                Debug.Log("Fusebox fixed!");
+                DecreaseInstability();
+                break;
             }
             else
             {
-                DecreaseInstability();
+                GetFusebox = false;
+                GetFuseboxCompleted = false;
+                IncreaseInstability();
+                Debug.Log("Fusebox minigame time up!");
+                break;
             }
         }
     }
@@ -123,9 +142,8 @@ public class EventController : Singleton
         switchCounter += count;
         if (switchCounter == 8)
         {
-            // Debug.Log("Fusebox is fixed!");
-            // GetFusebox = false;
-            // GetSwitches = 0;
+            GetFusebox = false;
+            GetSwitches = 0;
         }
     }
 
@@ -134,16 +152,20 @@ public class EventController : Singleton
         while (true)
         {
             yield return new WaitForSeconds(hexcodeDuration);
-            if (GetHexcode)
+            if (GetHexcodeCompleted)
             {
                 // Minigame time is up, increase instability or decrease it if completed
                 GetHexcode = false;
-                Debug.Log("Hexcode minigame time up!");
-                IncreaseInstability();
+                GetHexcodeCompleted = false;
+                Debug.Log("Hexcode Fixed!");
+                DecreaseInstability();
             }
             else
             {
-                DecreaseInstability();
+                GetHexcode = false;
+                GetHexcodeCompleted = false;
+                Debug.Log("Hexcode minigame time up!");
+                IncreaseInstability();
             }
         }
     }

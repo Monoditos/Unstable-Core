@@ -38,13 +38,13 @@ public class Switches : MonoBehaviour
         counter = EventController.GetSwitches;
         if (counter == 8 || (!EventController.GetFusebox && isOn))
         {
+            EventController.GetFuseboxCompleted = true;
             EventController.GetFusebox = false;
             isOn = !isOn;
             on.SetActive(isOn);
             off.SetActive(!isOn);
             EventController.GetSwitches = 0;
             EventController.AddSwitch(-1);
-            Debug.Log("WAH");
         }
     }
     public void OnMouseUp()
