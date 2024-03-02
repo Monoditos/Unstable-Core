@@ -59,13 +59,13 @@ public class EventController : Singleton
     private void IncreaseInstability()
     {
         // Increase reactor instability when a minigame is failed
-        Debug.Log("Instability increased!");
+        // Debug.Log("Instability increased!");
     }
 
     private void DecreaseInstability()
     {
         // Increase reactor instability when a minigame is failed
-        Debug.Log("Instability decreased!");
+        // Debug.Log("Instability decreased!");
     }
 
     // MINIGAME EVENT CONTROLLER
@@ -76,15 +76,16 @@ public class EventController : Singleton
         if (Random.value > 0.0001f)
         {
             GetFusebox = true;
+            // Debug.Log(GetFusebox);
             GetSwitches = 0;
             StartCoroutine(ActivateFusebox());
-            Debug.Log("Fusebox minigame activated!");
+            // Debug.Log("Fusebox minigame activated!");
         }
         else
         {
             GetHexcode = true;
             StartCoroutine(ActivateHexcode());
-            Debug.Log("Hexcode minigame activated!");
+            // Debug.Log("Hexcode minigame activated!");
         }
     }
 
@@ -98,7 +99,7 @@ public class EventController : Singleton
 
     private void Start()
     {
-        
+
     }
 
     private void Update()
@@ -121,10 +122,8 @@ public class EventController : Singleton
             {
                 // Minigame time is up, increase instability or decrease it if completed
                 GetFusebox = false;
-                GetFuseboxCompleted = false;
-                Debug.Log("Fusebox fixed!");
-                DecreaseInstability();
-                break;
+                // Debug.Log("Fusebox minigame time up!");
+                IncreaseInstability();
             }
             else
             {
@@ -156,9 +155,8 @@ public class EventController : Singleton
             {
                 // Minigame time is up, increase instability or decrease it if completed
                 GetHexcode = false;
-                GetHexcodeCompleted = false;
-                Debug.Log("Hexcode Fixed!");
-                DecreaseInstability();
+                // Debug.Log("Hexcode minigame time up!");
+                IncreaseInstability();
             }
             else
             {
