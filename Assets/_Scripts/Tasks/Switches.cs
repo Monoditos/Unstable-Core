@@ -9,8 +9,8 @@ public class Switches : MonoBehaviour
     public bool isOn;
     public float randomValue, randomChange;
 
-    void Start()
-    {
+    private void OnEnable() {
+
         randomValue = Random.value;
         if (randomValue < 0.40)
         {
@@ -65,7 +65,7 @@ public class Switches : MonoBehaviour
     IEnumerator RandomlySelectFalseEachSecond()
     {
         randomChange = Random.value;
-        if (randomChange <= 0.00003 && isOn == true)
+        if (randomChange <= 0.0005 && isOn == true)
         {
             isOn = false;
             on.SetActive(isOn);

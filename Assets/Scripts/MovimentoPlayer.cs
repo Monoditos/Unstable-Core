@@ -111,7 +111,9 @@ public class MovimentoPlayer : MonoBehaviour
             } else {
                 consoleTxt.SetActive(false);
             }
-        }   
+        } else {
+            consoleTxt.SetActive(false);
+        }
     }
 
     void OpenMenu(string objectName)
