@@ -13,7 +13,7 @@ public class SwitchBar : MonoBehaviour
 
     void Update()
     {
-        fillGreen = (float)SwitchCount.GetSwitches;
+        fillGreen = (float)EventController.GetSwitches;
         fillGreen = fillGreen / total;
         greenBar.GetComponent<Image>().fillAmount = fillGreen;
         if (fillGreen == 1)

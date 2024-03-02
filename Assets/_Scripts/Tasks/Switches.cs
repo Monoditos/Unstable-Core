@@ -20,19 +20,19 @@ public class Switches : MonoBehaviour
         {
             isOn = false;
         }
-        counter = SwitchCount.GetSwitches;
+        counter = EventController.GetSwitches;
         on.SetActive(isOn);
         off.SetActive(!isOn);
         if (isOn)
         {
-            SwitchCount.AddSwitch(1);
+            EventController.AddSwitch(1);
         }
     }
 
     private void Update()
     {
         StartCoroutine(RandomlySelectFalseEachSecond());
-        counter = SwitchCount.GetSwitches;
+        counter = EventController.GetSwitches;
     }
     public void OnMouseUp()
     {
@@ -41,11 +41,11 @@ public class Switches : MonoBehaviour
         off.SetActive(!isOn);
         if (isOn)
         {
-            SwitchCount.AddSwitch(1);
+            EventController.AddSwitch(1);
         }
         else
         {
-            SwitchCount.AddSwitch(-1);
+            EventController.AddSwitch(-1);
         }
     }
 
@@ -57,7 +57,7 @@ public class Switches : MonoBehaviour
             isOn = false;
             on.SetActive(isOn);
             off.SetActive(!isOn);
-            SwitchCount.AddSwitch(-1);
+            EventController.AddSwitch(-1);
             yield return new WaitForSeconds(3f);
         }
         yield return new WaitForSeconds(3f);
@@ -97,19 +97,19 @@ public class Switches : MonoBehaviour
         {
             isOn = false;
         }
-        counter = SwitchCount.GetSwitches;
+        counter = EventController.GetSwitches;
         on.enabled = isOn;
         off.enabled = !isOn;
         if (isOn)
         {
-            SwitchCount.AddSwitch(1);
+            EventController.AddSwitch(1);
         }
     }
 
     private void Update()
     {
         StartCoroutine(RandomlySelectFalseEachSecond());
-        counter = SwitchCount.GetSwitches;
+        counter = EventController.GetSwitches;
     }
     private void OnMouseUp()
     {
@@ -118,11 +118,11 @@ public class Switches : MonoBehaviour
         off.enabled = !isOn;
         if (isOn)
         {
-            SwitchCount.AddSwitch(1);
+            EventController.AddSwitch(1);
         }
         else
         {
-            SwitchCount.AddSwitch(-1);
+            EventController.AddSwitch(-1);
         }
     }
 
@@ -135,7 +135,7 @@ public class Switches : MonoBehaviour
             isOn = false;
             on.enabled = isOn;
             off.enabled = !isOn;
-            SwitchCount.AddSwitch(-1);
+            EventController.AddSwitch(-1);
             yield return new WaitForSeconds(1.5f);
         }
         yield return new WaitForSeconds(1.5f);
