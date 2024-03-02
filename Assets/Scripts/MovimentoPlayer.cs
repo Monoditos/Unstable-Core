@@ -26,6 +26,8 @@ public class MovimentoPlayer : MonoBehaviour
     // Target rotation angle
     private Quaternion targetRotation;
 
+    private bool menuopen = false;
+
     void Start(){
         TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
         TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
@@ -87,7 +89,18 @@ public class MovimentoPlayer : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
                     string objectName = hit.transform.name;
-                    OpenMenu(objectName);
+                    if (!menuopen)
+                    {
+                        menuopen = true;
+                        isInputDisabled = true;
+                        OpenMenu(objectName);
+                    } else {
+                        menuopen = false;
+                        isInputDisabled = false;
+                        CloseMenu(objectName);
+                    }
+                    
+    
                 }
             } else {
                 consoleTxt.SetActive(false);
@@ -121,6 +134,36 @@ public class MovimentoPlayer : MonoBehaviour
             default:
                 // Default case or handle unrecognized object names
                 Debug.Log("No menu found for object: " + objectName);
+                break;
+        }
+    }
+
+    void CloseMenu(string objectName)
+    {
+        // Logic to open the right menu based on objectName
+        switch (objectName)
+        {
+            case "Fusebox":
+                // Open Fusebox menu
+                Debug.Log("Closing Fusebox menu...");
+                break;
+
+            case "HexcodePanel":
+                // Open HexcodePanel menu
+                Debug.Log("Closing HexcodePanel menu...");
+                break;
+
+            case "Terminal":
+                Debug.Log("Closing Terminal menu...");
+                TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
+                TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0);
+                Transform childTransform = TerminalConsole.transform.Find("Viewport");
+                childTransform.gameObject.SetActive(false);
+                break;
+
+            default:
+                // Default case or handle unrecognized object names
+                Debug.Log("No menu to close. " + objectName);
                 break;
         }
     }
