@@ -42,6 +42,7 @@ public class AudioController : MonoBehaviour
             if (audio.name == name)
             {
                 sfxSource.clip = audio;
+                sfxSource.loop = true;
                 sfxSource.Play();
                 return;
             }
