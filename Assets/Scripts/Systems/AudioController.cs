@@ -17,7 +17,7 @@ public class AudioController : MonoBehaviour
         musicAudio = Resources.LoadAll<AudioClip>("Audio/Music");
         sfxAudio = Resources.LoadAll<AudioClip>("Audio/SFX");
 
-        PlayMusic("music_ES01");
+        PlayMusic("music_ES04");
     }
 
     public void PlayMusic(string name)
