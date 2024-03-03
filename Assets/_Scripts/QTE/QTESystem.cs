@@ -25,7 +25,7 @@ public class QTESystem : MonoBehaviour
 
     private void GenerateQTE()
     {
-        qteGen = Random.Range(1, 4);
+        qteGen = Random.Range(1, 5);
         waiting = 1;
 
         switch (qteGen)
@@ -38,6 +38,9 @@ public class QTESystem : MonoBehaviour
                 break;
             case 3:
                 keyTxt.text = "[T]";
+                break;
+            case 4:
+                keyTxt.text = "[Y]";
                 break;
         }
 
