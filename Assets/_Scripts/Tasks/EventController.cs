@@ -9,8 +9,10 @@ public class EventController : Singleton
     public static EventController instance;
 
     // Constants for minigame probabilities and durations
-    private const float minigameActivationProbability = 0.00065f; // Adjust this value as needed
-
+    private const float initialMinigameActivationProbability = 0.15f; // Adjust this value as needed
+    private float currentMinigameActivationProbability;
+    public const float initialWaitTime = 3f;
+    public float currentWaitTime;
 
     public GameObject player;
     public AudioController audioManager;
@@ -172,17 +174,40 @@ public class EventController : Singleton
             }
         }
     }
+
+    private void Start(){
+
+        currentWaitTime = initialWaitTime;
+        currentMinigameActivationProbability = initialMinigameActivationProbability;
+        StartCoroutine(ActivateMinigameCoroutine());
+
+    }
+    private IEnumerator ActivateMinigameCoroutine()
+
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(currentWaitTime); // Wait for 3 seconds
+
+            // Calculate if a minigame should activate based on the 15% probability
+            if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.Range(0f,1f) < initialMinigameActivationProbability))
+            {
+                ActivateMinigame();
+            } else {
+                currentWaitTime *= 0.99f; // Decrease wait time by 1% (adjust this value as needed)
+                currentWaitTime = Mathf.Max(currentWaitTime, 1f); // Ensure wait time doesn't go below 0.1 seconds
+                currentMinigameActivationProbability *= 1.01f;
+                currentMinigameActivationProbability = Mathf.Min(currentMinigameActivationProbability, 0.33f);
+            }
+        }
+    }
+
+
     private void Update()
     {
         if (GetInstability >= 100)
         {
             EndGame();
-        }
-
-        // Check for minigame activation
-        if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.value < minigameActivationProbability))
-        {
-            ActivateMinigame();
         }
 
         if (GetFuseboxCompleted)

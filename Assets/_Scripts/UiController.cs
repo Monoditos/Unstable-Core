@@ -9,10 +9,13 @@ public class UiController : MonoBehaviour
 
     [Header("Minimap Alerts")]
     public static int switchAlert = 0, hexAlert = 1, qteAlert = 2, pipeAlert = 3;
+    public GameObject minimap;
+    public GameObject amogus;
     public GameObject[] minimapAlerts;
     
     [Header("Stability Meter")]
     public GameObject instabilityIndicator;
+    public Image sliderBarFill;
     public Slider instabilityMeter;
     public TMP_Text instabilityText;
 
@@ -32,6 +35,16 @@ public class UiController : MonoBehaviour
             instabilityIndicator.SetActive(false);
         } else {
             instabilityIndicator.SetActive(true);
+        }
+    }
+
+    public void showHideMinimap() {
+        if (minimap.activeSelf){
+            minimap.SetActive(false); 
+            amogus.SetActive(false);
+        } else {
+           minimap.SetActive(true);
+           amogus.SetActive(true); 
         }
     }
 
@@ -66,6 +79,7 @@ public class UiController : MonoBehaviour
         }
 
         instabilityMeter.value = (float)EventController.GetInstability / 100;
+        sliderBarFill.color = Color.Lerp(Color.green, Color.red, instabilityMeter.value);
         instabilityText.text = "Instability Status: " + EventController.GetInstability.ToString() + "%";
     }
 

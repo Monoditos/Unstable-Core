@@ -151,6 +151,7 @@ public class MovimentoPlayer : MonoBehaviour
                 Transform childTransform = TerminalConsole.transform.Find("Viewport");
                 childTransform.gameObject.SetActive(true);
                 UiController.showHideStability();
+                UiController.showHideMinimap();
                 break;
 
             case "QTE":
@@ -203,6 +204,7 @@ public class MovimentoPlayer : MonoBehaviour
                 Transform childTransform = TerminalConsole.transform.Find("Viewport");
                 childTransform.gameObject.SetActive(false);
                 UiController.showHideStability();
+                UiController.showHideMinimap();
                 break;
             
             case "QTE":
