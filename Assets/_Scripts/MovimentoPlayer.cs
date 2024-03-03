@@ -150,7 +150,7 @@ public class MovimentoPlayer : MonoBehaviour
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 905);
                 Transform childTransform = TerminalConsole.transform.Find("Viewport");
                 childTransform.gameObject.SetActive(true);
-                Debug.ClearDeveloperConsole()
+                Debug.ClearDeveloperConsole();
                 UiController.showHideStability();
                 UiController.showHideMinimap();
                 break;
