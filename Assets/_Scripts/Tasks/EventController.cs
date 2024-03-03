@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EventController : Singleton
 {
@@ -26,11 +27,10 @@ public class EventController : Singleton
 
     public static int stability = 100;
 
+    public Slider stabilityMeter;
     public GameObject fuseboxMenu;
     public GameObject hexMenu;
     public GameObject QTEMenu;
-
-
 
     public static int GetSwitches
     {
@@ -74,6 +74,7 @@ public class EventController : Singleton
         // Increase reactor instability when a minigame is failed
         Debug.Log("Instability increased!");
         stability += 10;
+        stabilityMeter.value = stability;
     }
 
     private void DecreaseInstability()
@@ -81,6 +82,7 @@ public class EventController : Singleton
         // Increase reactor instability when a minigame is failed
         Debug.Log("Instability decreased!");
         stability -= 10;
+        stabilityMeter.value = stability;
     }
 
     // MINIGAME EVENT CONTROLLER
@@ -115,7 +117,7 @@ public class EventController : Singleton
 
     private void Start()
     {
-
+        stabilityMeter.value = stability;
     }
 
     private void Update()
