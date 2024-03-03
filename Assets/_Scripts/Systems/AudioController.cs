@@ -83,6 +83,11 @@ public class AudioController : MonoBehaviour
         }
     }
 
+    public void StopMusic()
+    {
+        musicSource.Stop();
+    }
+
     public void PlaySoundEffect(string name)
     {
         foreach (AudioClip audio in sfxAudio)
