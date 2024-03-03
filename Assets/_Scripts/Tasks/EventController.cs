@@ -206,6 +206,7 @@ public class EventController : Singleton
             // Calculate if a minigame should activate based on probability
             if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.Range(0f,1f) < currentMinigameActivationProbability))
             {
+                Debug.Log("ewejbigref");
                 ActivateMinigame();
             }
             else

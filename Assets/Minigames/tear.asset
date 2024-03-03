@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1e5880ea30880c44a9f869682ac0470, type: 3}
-  m_Name: code
+  m_Name: tear
   m_EditorClassIdentifier: 
-  word: RAT
-  answer: 524154
-  spawnChance: 80
+  word: TEAR
+  answer: 54454152
+  spawnChance: 20
