@@ -30,6 +30,8 @@ public class EventController : Singleton
     private static bool hexcode = false;
     private static bool hexcodeCompleted = false;
 
+    private static bool fromCritical = false;
+
     private static bool qte = false;
 
     private static bool qteCompleted = false;
@@ -47,6 +49,12 @@ public class EventController : Singleton
     public GameObject FishingMenu;
 
     public GameObject terminalMenu;
+
+    public static bool GetFromCritical
+    {
+        get { return fromCritical; }
+        set { fromCritical = value; }
+    }
 
 
     public static bool GetTimer
@@ -253,9 +261,13 @@ public class EventController : Singleton
             isCountingFuse = false;
             GetFuseboxCompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
-            audioManager.PlaySoundEffect("sommagicocompletaralgo");
+            if(!GetFromCritical){
+                AudioController audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
+                audioManager.PlaySoundEffect("taskWin");
+                Debug.Log("Fusebox fixed!");
+            }
+            GetFromCritical = false;
             fuseboxMenu.gameObject.SetActive(false);
-            Debug.Log("Fusebox fixed!");
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
         }
@@ -266,7 +278,12 @@ public class EventController : Singleton
             isCountingHex = false;
             GetHexcodeCompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
-            audioManager.PlaySoundEffect("sommagicocompletaralgo");
+            if(!GetFromCritical){
+                AudioController audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
+                audioManager.PlaySoundEffect("taskWin");
+                Debug.Log("Hex Binaries unscrambled!");
+            }
+            GetFromCritical = false;
             hexMenu.gameObject.SetActive(false);
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
@@ -277,9 +294,13 @@ public class EventController : Singleton
             isCountingQTE = false;
             GetQTECompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
-            audioManager.PlaySoundEffect("sommagicocompletaralgo");
+            if(!GetFromCritical){
+                AudioController audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
+                audioManager.PlaySoundEffect("taskWin");
+                Debug.Log("Security door secured!");
+            }
+            GetFromCritical = false;
             QTEMenu.gameObject.SetActive(false);
-            Debug.Log("Security door secured!");
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
         }
@@ -289,9 +310,12 @@ public class EventController : Singleton
             isCountingFishing = false;
             GetFishingCompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
-            audioManager.PlaySoundEffect("sommagicocompletaralgo");
+            if(!GetFromCritical){
+                audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
+                audioManager.PlaySoundEffect("taskWin");
+                Debug.Log("Pipes Unblocked!");
+            }
             FishingMenu.gameObject.SetActive(false);
-            Debug.Log("Pipes Unblocked!");
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
         }
@@ -383,22 +407,27 @@ public class EventController : Singleton
 
     public static void CriticalError(int game)
     {
+        AudioController audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
+        audioManager.PlaySoundEffect("taskLost");
         switch (game)
         {
             case 1:
                 GetFusebox = false;
                 GetSwitches = 0;
                 GetFuseboxCompleted = true;
+                GetFromCritical = true;
                 GetInstability += 15;
                 break;
             case 2:
                 GetHexcode = false;
                 GetHexcodeCompleted = true;
+                GetFromCritical = true;
                 GetInstability += 15;
                 break;
             case 3:
                 GetQTE = false;
                 GetQTECompleted = true;
+                GetFromCritical = true;
                 GetStreak = 0;
                 GetInstability += 15;
                 break;
