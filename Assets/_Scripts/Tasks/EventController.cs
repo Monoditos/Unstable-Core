@@ -145,9 +145,9 @@ public class EventController : Singleton
         }
         else
         {
-            GetHexcode = true;
-            StartCoroutine(ActivateHexcode());
-            Debug.Log("Cooling binaries anomaly. " + hexcodeDuration + "s until critical failure.");
+            GetFishing = true;
+            StartCoroutine(ActivateFishing());
+            Debug.Log("Pipe anomaly. " + hexcodeDuration + "s until critical failure.");
             // Debug.Log("Hexcode minigame activated!");
         }
     }
@@ -231,27 +231,27 @@ public class EventController : Singleton
         }
     }
 
-    private IEnumerator ActivateHexcode()
+    private IEnumerator ActivateFishing()
     {
         while (true)
         {
             yield return new WaitForSeconds(hexcodeDuration);
-            if (GetHexcodeCompleted)
+            if (GetFishingCompleted)
             {
                 // Minigame time is up, increase instability or decrease it if completed
-                GetHexcode = false;
-                GetHexcodeCompleted = false;
+                GetFishing = false;
+                GetFishingCompleted = false;
                 // Debug.Log("Hexcode minigame time up!");
                 DecreaseInstability();
-                hexMenu.gameObject.SetActive(false);
+                FishingMenu.gameObject.SetActive(false);
             }
             else
             {
-                GetHexcode = false;
-                GetHexcodeCompleted = false;
+                GetFishing = false;
+                GetFishingCompleted = false;
                 Debug.Log("Hexcode minigame time up!");
                 IncreaseInstability();
-                hexMenu.gameObject.SetActive(false);
+                FishingMenu.gameObject.SetActive(false);
             }
         }
     }
