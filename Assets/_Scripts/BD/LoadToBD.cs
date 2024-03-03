@@ -8,7 +8,8 @@ using UnityEditor;
 using TMPro;
 public class LoadToBD : MonoBehaviour
 {
-
+    public Timer timer;
+    public TMP_InputField username;
     private string bd = "URI=file:./data.db";
     IDbConnection ligacaoBD;
 
@@ -20,12 +21,18 @@ public class LoadToBD : MonoBehaviour
 
     public void StoreRun()
     {
+        float tempo = Mathf.Round(timer.elapsedTime * 100.0f) / 100.0f;
         Ligacao();
         IDbCommand cmnd = ligacaoBD.CreateCommand();
         cmnd.CommandText = "INSERT INTO Logs (username, time) " +
-        "VALUES (@username, @time)";
-        //     cmnd.Parameters.Add(new SqliteParameter("@username", SceneManager.GetActiveScene().buildIndex));
-        //     cmnd.Parameters.Add(new SqliteParameter("@time", StatsController.GetCoins));
-        // }
+            "VALUES (@username, @time)";
+        cmnd.Parameters.Add(new SqliteParameter("@username", username.text));
+        cmnd.Parameters.Add(new SqliteParameter("@time", tempo));
+        cmnd.ExecuteNonQuery();
+        ligacaoBD.Close();
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }

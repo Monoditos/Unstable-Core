@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EventController : Singleton
 {
@@ -9,7 +10,7 @@ public class EventController : Singleton
     public static EventController instance;
 
     // Constants for minigame probabilities and durations
-    private const float initialMinigameActivationProbability = 0.20f; // Adjust this value as needed
+    private const float initialMinigameActivationProbability = 0.80f; // Adjust this value as needed
     private float currentMinigameActivationProbability;
     public const float initialWaitTime = 4f;
     public float currentWaitTime;
@@ -300,7 +301,7 @@ public class EventController : Singleton
             {
                 if (Time.time - timeToDamageFuse > 5)
                 {
-                    GetInstability += 2;
+                    GetInstability += 100;
                     isCountingFuse = false;
                     Debug.LogWarning("Fusebox anomaly increasing instability.");
                 }
@@ -318,7 +319,7 @@ public class EventController : Singleton
             {
                 if (Time.time - timeToDamageHex > 5)
                 {
-                    GetInstability += 2;
+                    GetInstability += 100;
                     isCountingHex = false;
                     Debug.LogWarning("Cooling Binaries anomaly increasing instability.");
                 }
@@ -337,7 +338,7 @@ public class EventController : Singleton
                 if (Time.time - timeToDamageQTE > 5)
                 {
                     Debug.LogWarning("Door anomaly increasing instability.");
-                    GetInstability += 2;
+                    GetInstability += 100;
                     isCountingQTE = false;
                 }
             }
@@ -355,7 +356,7 @@ public class EventController : Singleton
                 if (Time.time - timeToDamageFishing > 5)
                 {
                     Debug.LogWarning("Pipes anomaly increasing instability.");
-                    GetInstability += 2;
+                    GetInstability += 100;
                     isCountingFishing = false;
                 }
             }
@@ -408,4 +409,5 @@ public class EventController : Singleton
         uiController.GameOver();
         Time.timeScale = 0;
     }
+
 }
