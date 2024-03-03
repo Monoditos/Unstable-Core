@@ -16,6 +16,8 @@ public class MovimentoPlayer : MonoBehaviour
     // Timeout duration after movement or rotation
     public float inputTimeoutDuration = 2f;
 
+    public UiController UiController;
+
     public GameObject eventController;
     public GameObject consoleTxt;
     public GameObject TerminalConsole;
@@ -23,6 +25,7 @@ public class MovimentoPlayer : MonoBehaviour
     public GameObject FuseboxMenu;
     public GameObject HexMenu;
     public GameObject QTEMenu;
+    public GameObject FishingMenu;
 
     // Flag to check if rotation is in progress
     private bool isRotating = false;
@@ -38,6 +41,8 @@ public class MovimentoPlayer : MonoBehaviour
     void Start(){
         TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
         TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
+
+        UiController = GameObject.Find("UI Canvas").GetComponent<UiController>();
     }
 
     // Update is called once per frame
@@ -102,8 +107,6 @@ public class MovimentoPlayer : MonoBehaviour
                     } else {
                         OpenMenu(objectName);
                     }
-                    
-    
                 }
             } else {
                 consoleTxt.SetActive(false);
@@ -149,15 +152,24 @@ public class MovimentoPlayer : MonoBehaviour
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 905);
                 Transform childTransform = TerminalConsole.transform.Find("Viewport");
                 childTransform.gameObject.SetActive(true);
+                UiController.showHideStability();
                 break;
 
             case "QTE":
-            if(EventController.GetQTE)
-            {
-                QTEMenu.gameObject.SetActive(true);
-            } else {
-                CloseMenu(objectName);
-            }
+                if(EventController.GetQTE)
+                {
+                    QTEMenu.gameObject.SetActive(true);
+                } else {
+                    CloseMenu(objectName);
+                }
+                break;
+            case "Fishing":
+                if(EventController.GetFishing)
+                {
+                    FishingMenu.gameObject.SetActive(true);
+                } else {
+                    CloseMenu(objectName);
+                }
                 break;
 
             default:
@@ -192,10 +204,15 @@ public class MovimentoPlayer : MonoBehaviour
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0);
                 Transform childTransform = TerminalConsole.transform.Find("Viewport");
                 childTransform.gameObject.SetActive(false);
+                UiController.showHideStability();
                 break;
             
             case "QTE":
                 QTEMenu.gameObject.SetActive(false);
+                break;
+
+            case "Fishing":
+                FishingMenu.gameObject.SetActive(false);
                 break;
 
             default:
