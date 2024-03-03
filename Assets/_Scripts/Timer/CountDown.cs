@@ -21,8 +21,7 @@ public class CountDown : MonoBehaviour
         }
         else if (remainingTime <= 0)
         {
-            // EventController.IncreaseInstability();
-            EventController.GetFuseboxCompleted = true;
+            EventController.CriticalError(1);
             remainingTime = 0;
         }
         int minutes = Mathf.FloorToInt(remainingTime / 60);

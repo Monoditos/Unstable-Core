@@ -9,10 +9,11 @@ public class Switches : MonoBehaviour
     public bool isOn;
     public float randomValue, randomChange;
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
 
         randomValue = Random.value;
-        if (randomValue < 0.40)
+        if (randomValue < 0.30)
         {
             isOn = true;
         }
@@ -31,10 +32,11 @@ public class Switches : MonoBehaviour
 
     private void Update()
     {
-        if(isOn && EventController.GetFusebox){
+        if (isOn && EventController.GetFusebox)
+        {
             StartCoroutine(RandomlySelectFalseEachSecond());
         }
-        
+
         counter = EventController.GetSwitches;
         if (counter == 8 || (!EventController.GetFusebox && isOn))
         {

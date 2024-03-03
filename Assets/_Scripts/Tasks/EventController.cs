@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class EventController : Singleton
 {
+    private bool isCountingFuse, isCountingHex, isCountingQTE, isCountingFishing;
+    private float timeToDamageFuse, timeToDamageHex, timeToDamageQTE, timeToDamageFishing;
     public static EventController instance;
 
     // Constants for minigame probabilities and durations
-    private const float minigameActivationProbability = 0.0007f; // Adjust this value as needed
-    private const float minigameDuration = 10f; // Duration of minigames in seconds
+    private const float minigameActivationProbability = 0.00009f; // Adjust this value as needed
 
-    private static float fuseboxDuration = 15f;
-    private static float hexcodeDuration = 20f;
 
     public GameObject player;
 
@@ -27,6 +26,9 @@ public class EventController : Singleton
     private static bool qte = false;
 
     private static bool qteCompleted = false;
+    private static bool fishing = false;
+
+    private static bool fishingCompleted = false;
 
     // Countdown timer for active minigames
     private static float minigameTimer = 0f;
@@ -36,6 +38,7 @@ public class EventController : Singleton
     public GameObject fuseboxMenu;
     public GameObject hexMenu;
     public GameObject QTEMenu;
+    public GameObject FishingMenu;
 
     public static int GetSwitches
     {
@@ -84,125 +87,195 @@ public class EventController : Singleton
         set { qteCompleted = value; }
     }
 
+    public static bool GetFishing
+    {
+        get { return fishing; }
+        set { fishing = value; }
+    }
+
+    public static bool GetFishingCompleted
+    {
+        get { return fishingCompleted; }
+        set { fishingCompleted = value; }
+    }
     public static int GetInstability
     {
         get { return instability; }
         set { instability = value; }
     }
-
-    // REACTOR LOGIC
-
-    public void IncreaseInstability()
-    {
-        instability += 10;
-        if (instability >= 100)
-        {
-            // Increase reactor instability when a minigame is failed
-            instability = 100;
-            Debug.Log("Core too unstable, prepare to die!");
-            //gamestate = "gameover";
-        }
-        Debug.Log("Instability increased!");
-    }
-
-    public void DecreaseInstability()
-    {
-        instability -= 10;
-        if (instability <= 0)
-        {
-            // Increase reactor instability when a minigame is failed
-            instability = 0;
-        }
-        Debug.Log("Instability decreased!");
-    }
-
-    // MINIGAME EVENT CONTROLLER
-
     private void ActivateMinigame()
     {
-        // Determine which minigame to activate (for example, randomly)
-        if (Random.value > 0.0001f)
+        while (true)
         {
-            GetFusebox = true;
-            // Debug.Log(GetFusebox);
-            GetSwitches = 0;
-            StartCoroutine(ActivateFusebox());
-            Debug.Log("Fuse anomaly. " + fuseboxDuration + "s until critical failure.");
+
+            int randomNumber = Random.Range(0, 100);
+            // Determine which minigame to activate (for example, randomly)
+            if (randomNumber < 25)
+            {
+                if (GetFusebox)
+                {
+                    continue;
+                }
+                GetFusebox = true;
+                GetSwitches = 0;
+                Debug.Log("Fusebox anomaly, fix it before critical failure.");
+                break;
+            }
+            if (randomNumber < 50)
+            {
+                if (GetHexcode)
+                {
+                    continue;
+                }
+                GetHexcode = true;
+                Debug.Log("Cooling binaries anomaly, fix it before critical failure.");
+                break;
+            }
+            if (randomNumber < 75)
+            {
+                if (GetQTE)
+                {
+                    continue;
+                }
+                GetQTE = true;
+                GetStreak = 0;
+                Debug.Log("Exit door is beeing forced, fix it before critical failure.");
+                break;
+            }
+            if (randomNumber < 100)
+            {
+                if (GetFishing)
+                {
+                    continue;
+                }
+                GetFishing = true;
+                Debug.Log("Something got stuck in the pipes, fix it before critical failure.");
+                break;
+            }
         }
-        else
-        {
-            GetHexcode = true;
-            StartCoroutine(ActivateHexcode());
-            Debug.Log("Cooling binaries anomaly. " + hexcodeDuration + "s until critical failure.");
-            // Debug.Log("Hexcode minigame activated!");
-        }
     }
-
-    private void DeactivateMinigames()
-    {
-        GetFusebox = false;
-        GetHexcode = false;
-        // Reset the timer for the next activation
-        minigameTimer = minigameDuration;
-    }
-
-    private void Start()
-    {
-    }
-
     private void Update()
     {
         // Check for minigame activation
-        if (!GetFusebox && !GetHexcode && (Random.value < minigameActivationProbability))
+        if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.value < minigameActivationProbability))
         {
             ActivateMinigame();
         }
 
         if (GetFuseboxCompleted)
         {
+            GetInstability -= 5;
+            isCountingFuse = false;
+            GetFuseboxCompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
             fuseboxMenu.gameObject.SetActive(false);
-            
+            Debug.Log("Fusebox fixed!");
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
         }
 
-        if (GetHexcodeCompleted){
+        if (GetHexcodeCompleted)
+        {
+            GetInstability -= 5;
+            isCountingHex = false;
+            GetHexcodeCompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
             hexMenu.gameObject.SetActive(false);
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
         }
-
-
-    }
-
-    // SWITCH GAME
-
-    private IEnumerator ActivateFusebox()
-    {
-        while (true)
+        if (GetQTECompleted)
         {
-            yield return new WaitForSeconds(fuseboxDuration);
-            if (GetFuseboxCompleted)
+            GetInstability -= 5;
+            isCountingQTE = false;
+            GetQTECompleted = false;
+            MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
+            QTEMenu.gameObject.SetActive(false);
+            playerScript.menuopen = false;
+            playerScript.isInputDisabled = false;
+        }
+        if (GetFishingCompleted)
+        {
+            GetInstability -= 5;
+            isCountingFishing = false;
+            GetFishingCompleted = false;
+            MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
+            FishingMenu.gameObject.SetActive(false);
+            playerScript.menuopen = false;
+            playerScript.isInputDisabled = false;
+        }
+
+
+        if (GetFusebox)
+        {
+            if (isCountingFuse)
             {
-                // Minigame time is up, increase instability or decrease it if completed
-                GetFusebox = false;
-                GetFuseboxCompleted = false;
-                // Debug.Log("Fusebox minigame time up!");
-                DecreaseInstability();
-                // tocar som de yuppie
-                fuseboxMenu.gameObject.SetActive(false);
+                if (Time.time - timeToDamageFuse > 5)
+                {
+                    GetInstability += 2;
+                    isCountingFuse = false;
+                    Debug.Log("WAH");
+                }
             }
             else
             {
-                GetFusebox = false;
-                GetFuseboxCompleted = false;
-                IncreaseInstability();
-                Debug.Log("Fusebox minigame time up!");
-                // tocar som womp womp
-                fuseboxMenu.gameObject.SetActive(false);
-                break;
+                timeToDamageFuse = Time.time;
+                isCountingFuse = true;
+
+            }
+        }
+        if (GetHexcode)
+        {
+            if (isCountingHex)
+            {
+                if (Time.time - timeToDamageHex > 5)
+                {
+                    GetInstability += 2;
+                    isCountingHex = false;
+                    Debug.Log("HAW");
+                }
+            }
+            else
+            {
+                timeToDamageHex = Time.time;
+                isCountingHex = true;
+
+            }
+        }
+        if (GetQTE)
+        {
+            if (isCountingQTE)
+            {
+                if (Time.time - timeToDamageQTE > 5)
+                {
+                    Debug.Log("QTE");
+                    GetInstability += 2;
+                    isCountingQTE = false;
+                }
+            }
+            else
+            {
+                timeToDamageQTE = Time.time;
+                isCountingQTE = true;
+
+            }
+        }
+        if (GetFishing)
+        {
+            if (isCountingFishing)
+            {
+                if (Time.time - timeToDamageFishing > 5)
+                {
+                    Debug.Log("PEixe");
+                    GetInstability += 2;
+                    isCountingFishing = false;
+                }
+            }
+            else
+            {
+                timeToDamageFishing = Time.time;
+                isCountingFishing = true;
+
             }
         }
     }
@@ -217,28 +290,32 @@ public class EventController : Singleton
         }
     }
 
-    private IEnumerator ActivateHexcode()
+    public static void CriticalError(int game)
     {
-        while (true)
+        switch (game)
         {
-            yield return new WaitForSeconds(hexcodeDuration);
-            if (GetHexcodeCompleted)
-            {
-                // Minigame time is up, increase instability or decrease it if completed
+            case 1:
+                GetFusebox = false;
+                GetSwitches = 0;
+                GetFuseboxCompleted = true;
+                GetInstability += 15;
+                break;
+            case 2:
                 GetHexcode = false;
-                GetHexcodeCompleted = false;
-                // Debug.Log("Hexcode minigame time up!");
-                DecreaseInstability();
-                hexMenu.gameObject.SetActive(false);
-            }
-            else
-            {
-                GetHexcode = false;
-                GetHexcodeCompleted = false;
-                Debug.Log("Hexcode minigame time up!");
-                IncreaseInstability();
-                hexMenu.gameObject.SetActive(false);
-            }
+                GetHexcodeCompleted = true;
+                GetInstability += 15;
+                break;
+            case 3:
+                GetQTE = false;
+                GetQTECompleted = true;
+                GetStreak = 0;
+                GetInstability += 15;
+                break;
+            case 4:
+                GetFishing = false;
+                GetFishingCompleted = true;
+                GetInstability = 100;
+                break;
         }
     }
 }
