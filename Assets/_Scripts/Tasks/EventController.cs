@@ -13,6 +13,9 @@ public class EventController : Singleton
     private static float fuseboxDuration = 15f;
     private static float hexcodeDuration = 20f;
 
+    public GameObject player;
+
+    private MovimentoPlayer playerScript;
     // Minigame states
     public static int switchCounter = 0;
     public static int streak = 0;
@@ -20,6 +23,10 @@ public class EventController : Singleton
     private static bool fuseboxCompleted = false;
     private static bool hexcode = false;
     private static bool hexcodeCompleted = false;
+
+    private static bool qte = false;
+
+    private static bool qteCompleted = false;
 
     // Countdown timer for active minigames
     private static float minigameTimer = 0f;
@@ -65,6 +72,18 @@ public class EventController : Singleton
         set { hexcodeCompleted = value; }
     }
 
+    public static bool GetQTE
+    {
+        get { return qte; }
+        set { qte = value; }
+    }
+
+    public static bool GetQTECompleted
+    {
+        get { return qteCompleted; }
+        set { qteCompleted = value; }
+    }
+
     public static int GetInstability
     {
         get { return instability; }
@@ -73,10 +92,11 @@ public class EventController : Singleton
 
     // REACTOR LOGIC
 
-    private void IncreaseInstability()
+    public void IncreaseInstability()
     {
         instability += 10;
-        if(instability >= 100){
+        if (instability >= 100)
+        {
             // Increase reactor instability when a minigame is failed
             instability = 100;
             Debug.Log("Core too unstable, prepare to die!");
@@ -85,10 +105,11 @@ public class EventController : Singleton
         Debug.Log("Instability increased!");
     }
 
-    private void DecreaseInstability()
+    public void DecreaseInstability()
     {
         instability -= 10;
-        if(instability <= 0){
+        if (instability <= 0)
+        {
             // Increase reactor instability when a minigame is failed
             instability = 0;
         }
@@ -127,7 +148,6 @@ public class EventController : Singleton
 
     private void Start()
     {
-
     }
 
     private void Update()
@@ -137,6 +157,24 @@ public class EventController : Singleton
         {
             ActivateMinigame();
         }
+
+        if (GetFuseboxCompleted)
+        {
+            MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
+            fuseboxMenu.gameObject.SetActive(false);
+            
+            playerScript.menuopen = false;
+            playerScript.isInputDisabled = false;
+        }
+
+        if (GetHexcodeCompleted){
+            MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
+            hexMenu.gameObject.SetActive(false);
+            playerScript.menuopen = false;
+            playerScript.isInputDisabled = false;
+        }
+
+
     }
 
     // SWITCH GAME
@@ -153,6 +191,8 @@ public class EventController : Singleton
                 GetFuseboxCompleted = false;
                 // Debug.Log("Fusebox minigame time up!");
                 DecreaseInstability();
+                // tocar som de yuppie
+                fuseboxMenu.gameObject.SetActive(false);
             }
             else
             {
@@ -160,6 +200,8 @@ public class EventController : Singleton
                 GetFuseboxCompleted = false;
                 IncreaseInstability();
                 Debug.Log("Fusebox minigame time up!");
+                // tocar som womp womp
+                fuseboxMenu.gameObject.SetActive(false);
                 break;
             }
         }
@@ -187,6 +229,7 @@ public class EventController : Singleton
                 GetHexcodeCompleted = false;
                 // Debug.Log("Hexcode minigame time up!");
                 DecreaseInstability();
+                hexMenu.gameObject.SetActive(false);
             }
             else
             {
@@ -194,6 +237,7 @@ public class EventController : Singleton
                 GetHexcodeCompleted = false;
                 Debug.Log("Hexcode minigame time up!");
                 IncreaseInstability();
+                hexMenu.gameObject.SetActive(false);
             }
         }
     }

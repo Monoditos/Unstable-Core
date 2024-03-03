@@ -8,6 +8,10 @@ public class CountDown : MonoBehaviour
     [SerializeField] private TextMeshProUGUI countdownText;
     public float remainingTime;
 
+    private void OnEnable()
+    {
+        remainingTime = 15f;
+    }
     void Update()
     {
 
@@ -17,6 +21,8 @@ public class CountDown : MonoBehaviour
         }
         else if (remainingTime <= 0)
         {
+            // EventController.IncreaseInstability();
+            EventController.GetFuseboxCompleted = true;
             remainingTime = 0;
         }
         int minutes = Mathf.FloorToInt(remainingTime / 60);
