@@ -40,19 +40,6 @@ public class AudioController : MonoBehaviour
             }
         }
 
-        if(EventController.GetFusebox || EventController.GetHexcode || EventController.GetQTE || EventController.GetFishing){
-            if(sfxSource.clip.name != "somquandopassathreshold"){
-                PlaySoundEffect("somquandopassathreshold");
-            }
-        }
-
-        if(EventController.GetFuseboxCompleted || EventController.GetHexcodeCompleted || EventController.GetQTECompleted || EventController.GetFishingCompleted){
-            if(sfxSource.clip.name != "sommagicocompletaralgo"){
-                PlaySoundEffect("sommagicocompletaralgo");
-            }
-
-        }
-
     }
 
     public void PlayMusic(string name)

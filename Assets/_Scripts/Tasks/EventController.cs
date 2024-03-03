@@ -9,10 +9,11 @@ public class EventController : Singleton
     public static EventController instance;
 
     // Constants for minigame probabilities and durations
-    private const float minigameActivationProbability = 0.0009f; // Adjust this value as needed
+    private const float minigameActivationProbability = 0.00065f; // Adjust this value as needed
 
 
     public GameObject player;
+    public AudioController audioManager;
 
     private MovimentoPlayer playerScript;
     // Minigame states
@@ -101,10 +102,21 @@ public class EventController : Singleton
     public static int GetInstability
     {
         get { return instability; }
-        set { instability = value; }
+        set { 
+            if(value > 100){
+                instability = 100;
+                // Game Over
+            }else if(value < 0){
+                instability = 0;
+            }else{
+                instability = value;
+            }
+        }
     }
+    
     private void ActivateMinigame()
     {
+        audioManager.PlaySoundEffect("somquandopassathreshold");
         while (true)
         {
 
@@ -167,8 +179,8 @@ public class EventController : Singleton
             GetInstability -= 5;
             isCountingFuse = false;
             GetFuseboxCompleted = false;
-            GetFusebox = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
+            audioManager.PlaySoundEffect("sommagicocompletaralgo");
             fuseboxMenu.gameObject.SetActive(false);
             Debug.Log("Fusebox fixed!");
             playerScript.menuopen = false;
@@ -180,10 +192,9 @@ public class EventController : Singleton
             GetInstability -= 5;
             isCountingHex = false;
             GetHexcodeCompleted = false;
-            GetHexcode = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
+            audioManager.PlaySoundEffect("sommagicocompletaralgo");
             hexMenu.gameObject.SetActive(false);
-            Debug.Log("Correct code entered!");
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
         }
@@ -192,8 +203,8 @@ public class EventController : Singleton
             GetInstability -= 5;
             isCountingQTE = false;
             GetQTECompleted = false;
-            GetQTE = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
+            audioManager.PlaySoundEffect("sommagicocompletaralgo");
             QTEMenu.gameObject.SetActive(false);
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
@@ -203,8 +214,8 @@ public class EventController : Singleton
             GetInstability -= 5;
             isCountingFishing = false;
             GetFishingCompleted = false;
-            GetFishing = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
+            audioManager.PlaySoundEffect("sommagicocompletaralgo");
             FishingMenu.gameObject.SetActive(false);
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
@@ -219,6 +230,7 @@ public class EventController : Singleton
                 {
                     GetInstability += 2;
                     isCountingFuse = false;
+                    Debug.Log("[WARNING] Fusebox anomaly increasing instability.");
                 }
             }
             else
@@ -236,6 +248,7 @@ public class EventController : Singleton
                 {
                     GetInstability += 2;
                     isCountingHex = false;
+                    Debug.Log("[WARNING] Cooling Binaries anomaly increasing instability.");
                 }
             }
             else
@@ -251,6 +264,7 @@ public class EventController : Singleton
             {
                 if (Time.time - timeToDamageQTE > 5)
                 {
+                    Debug.Log("[WARNING] Door anomaly increasing instability.");
                     GetInstability += 2;
                     isCountingQTE = false;
                 }
@@ -268,6 +282,7 @@ public class EventController : Singleton
             {
                 if (Time.time - timeToDamageFishing > 5)
                 {
+                    Debug.Log("[WARNING] Pipes anomaly increasing instability.");
                     GetInstability += 2;
                     isCountingFishing = false;
                 }

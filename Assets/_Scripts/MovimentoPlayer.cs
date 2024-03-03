@@ -146,7 +146,6 @@ public class MovimentoPlayer : MonoBehaviour
 
             case "Terminal":
                 // Debug.Log("Terminal:");
-                Debug.Log("Reactor Stability: " + EventController.instability + "%");
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 400);
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 905);
                 Transform childTransform = TerminalConsole.transform.Find("Viewport");

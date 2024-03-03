@@ -640,6 +640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1787430563}
+  audioManager: {fileID: 1541397523}
   fuseboxMenu: {fileID: 945582767}
   hexMenu: {fileID: 524921570}
   QTEMenu: {fileID: 485716846}
@@ -4425,7 +4426,7 @@ GameObject:
   - component: {fileID: 1541397523}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: AudioManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

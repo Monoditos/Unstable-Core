@@ -8,10 +8,13 @@ public class StartCode : MonoBehaviour
 {
     public TMP_Text wordTxt;
     public TMP_InputField answerTxt;
+    private AudioController audioController;
     Codes codeUsed;
     public List<Codes> codeList = new List<Codes>();
+    
     private void Start()
     {
+        audioController = GameObject.Find("AudioManager").GetComponent<AudioController>();
         codeUsed = GetCode();
         Debug.Log("Code used: " + codeUsed.word);
         wordTxt.text = codeUsed.word;
@@ -58,6 +61,7 @@ public class StartCode : MonoBehaviour
         else
         {
             EventController.CriticalError(2);
+            audioController.PlaySoundEffect("erro");
             Debug.Log("Incorrect, damages were suffered!");
         }
     }

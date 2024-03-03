@@ -5,9 +5,14 @@ using UnityEngine.UI;
 public class Switches : MonoBehaviour
 {
     public GameObject on, off;
+    public AudioController audioController;
     public int counter;
     public bool isOn;
     public float randomValue, randomChange;
+
+    void Start(){
+        audioController = GameObject.Find("AudioManager").GetComponent<AudioController>();
+    }
 
     private void OnEnable()
     {
@@ -51,6 +56,7 @@ public class Switches : MonoBehaviour
     }
     public void OnMouseUp()
     {
+        audioController.PlaySoundEffect("switch_toggle");
         isOn = !isOn;
         on.SetActive(isOn);
         off.SetActive(!isOn);
