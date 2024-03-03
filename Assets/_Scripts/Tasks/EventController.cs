@@ -46,6 +46,8 @@ public class EventController : Singleton
     public GameObject QTEMenu;
     public GameObject FishingMenu;
 
+    public GameObject terminalMenu;
+
 
     public static bool GetTimer
     {
@@ -200,10 +202,10 @@ public class EventController : Singleton
     {
         while (true)
         {
-            yield return new WaitForSeconds(currentWaitTime); // Wait for 3 seconds
+            yield return new WaitForSeconds(currentWaitTime);
 
-            // Calculate if a minigame should activate based on the 15% probability
-            if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.Range(0f, 1f) < initialMinigameActivationProbability))
+            // Calculate if a minigame should activate based on probability
+            if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.Range(0f,1f) < currentMinigameActivationProbability))
             {
                 ActivateMinigame();
             }
@@ -405,6 +407,11 @@ public class EventController : Singleton
     public void EndGame()
     {
         uiController = GameObject.Find("UI Canvas").GetComponent<UiController>();
+        terminalMenu.gameObject.SetActive(false);
+        fuseboxMenu.gameObject.SetActive(false);
+        hexMenu.gameObject.SetActive(false);
+        FishingMenu.gameObject.SetActive(false);
+        QTEMenu.gameObject.SetActive(false);
         uiController.GameOver();
         Time.timeScale = 0;
     }

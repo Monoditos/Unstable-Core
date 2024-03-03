@@ -551,6 +551,7 @@ MonoBehaviour:
   hexMenu: {fileID: 524921570}
   QTEMenu: {fileID: 485716846}
   FishingMenu: {fileID: 7528055909641794544}
+  terminalMenu: {fileID: 1049484614}
 --- !u!4 &280563356
 Transform:
   m_ObjectHideFlags: 0
@@ -1713,6 +1714,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4554494440692051344, guid: c1291c43e83fdc844980349b5687e52a, type: 3}
   m_PrefabInstance: {fileID: 5012384764744953235}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1049484614 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5017385224150913179, guid: d1ece20f6d085ff458629ea218f1aaf2, type: 3}
+  m_PrefabInstance: {fileID: 607587739}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1050063805
 GameObject:
@@ -5494,6 +5500,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1970233809}
     m_Modifications:
+    - target: {fileID: 553708966161111897, guid: 75560a826b907b5478d4431c4c2d7af7, type: 3}
+      propertyPath: m_HideSoftKeyboard
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 553708966161111897, guid: 75560a826b907b5478d4431c4c2d7af7, type: 3}
+      propertyPath: m_OnFocusSelectAll
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8027988767697622944, guid: 75560a826b907b5478d4431c4c2d7af7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5577,6 +5591,10 @@ PrefabInstance:
     - target: {fileID: 9067640168844567617, guid: 75560a826b907b5478d4431c4c2d7af7, type: 3}
       propertyPath: m_Name
       value: HexMinigame
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067640168844567617, guid: 75560a826b907b5478d4431c4c2d7af7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
