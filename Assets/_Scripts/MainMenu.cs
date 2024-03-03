@@ -9,13 +9,17 @@ public class MainMenu : MonoBehaviour
     public GameObject tutorialScreen;
 
     public GameObject optionsScreen;
+
+    public GameObject creditsScreen;
+
+    public GameObject rankingScreen;
     public IEnumerator Tutorial(int seconds)
     {
         Debug.Log("tutorial shown");
         tutorialScreen.SetActive(true);
         yield return new WaitForSecondsRealtime(seconds);
         Debug.Log("tutorial hidden");
-        tutorialScreen.SetActive(false);
+        //tutorialScreen.SetActive(false);
         SceneManager.LoadScene("Cubos");
     }
     public void PlayGame()
@@ -42,14 +46,27 @@ public class MainMenu : MonoBehaviour
 
     public void OpenCredits()
     {
-        // Load the credits scene
-        Debug.Log("Credits");
+        Debug.Log("Open Credits");
+        creditsScreen.SetActive(true);
+    }
+
+    public void CloseCredits()
+    {
+        Debug.Log("Close Credits");
+        creditsScreen.SetActive(false);
     }
 
     public void OpenRanking()
     {
+        Debug.Log("Open Ranking");
+        rankingScreen.SetActive(true);
+    }
+
+    public void CloseRanking()
+    {
         // Load the ranking scene
-        Debug.Log("Ranking");
+        Debug.Log("Close Ranking");
+        rankingScreen.SetActive(false);
     }
 
     public void QuitGame()
