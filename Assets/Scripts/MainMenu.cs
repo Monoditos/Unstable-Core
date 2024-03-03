@@ -5,23 +5,16 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject panel;
 
-    public IEnumerator FadeIn()
+    public IEnumerator Wait()
     {
-        panel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-        while (panel.GetComponent<Image>().color.a < 255){
-            panel.GetComponent<Image>().color = new Color(0, 0, 0, panel.GetComponent<Image>().color.a + 1);
-            yield return new WaitForSeconds(0.01f);
-        }
-        //panel.gameObject.SetActive(false);
-        //SceneManager.LoadScene("Cubos");
+        yield return new WaitForSeconds(1.5f);
     }
     public void PlayGame()
     {
         Debug.Log("PlayGame");
-        panel.gameObject.SetActive(true);
-        StartCoroutine(FadeIn());
+        StartCoroutine(Wait());
+        SceneManager.LoadScene("Cubos");
     }
 
     public void OpenOptions()
