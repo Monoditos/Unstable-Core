@@ -6,15 +6,20 @@ using System.Collections;
 public class MainMenu : MonoBehaviour
 {
 
-    public IEnumerator Wait()
+    public GameObject tutorialScreen;
+    public IEnumerator Tutorial(int seconds)
     {
-        yield return new WaitForSeconds(1);
+        Debug.Log("tutorial shown");
+        tutorialScreen.SetActive(true);
+        yield return new WaitForSecondsRealtime(seconds);
+        Debug.Log("tutorial hidden");
+        tutorialScreen.SetActive(false);
+        SceneManager.LoadScene("Cubos");
     }
     public void PlayGame()
     {
         Debug.Log("PlayGame");
-        StartCoroutine(Wait());
-        SceneManager.LoadScene("Cubos");
+        StartCoroutine(Tutorial(10)) ;
     }
 
     public void OpenOptions()

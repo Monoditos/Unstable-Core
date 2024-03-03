@@ -1357,7 +1357,7 @@ GameObject:
   - component: {fileID: 518780083}
   - component: {fileID: 518780082}
   m_Layer: 5
-  m_Name: agua
+  m_Name: pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3725,7 +3725,7 @@ MonoBehaviour:
   - {fileID: 1522073167}
   - {fileID: 1645833652}
   - {fileID: 518780080}
-  instabilityIndicator: {fileID: 0}
+  instabilityIndicator: {fileID: 680185463}
   instabilityMeter: {fileID: 440642360}
   instabilityText: {fileID: 226079491}
 --- !u!4 &1978398193 stripped
