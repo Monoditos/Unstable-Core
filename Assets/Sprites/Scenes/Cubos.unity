@@ -4861,6 +4861,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361958627}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1388990269 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8578263257125955085, guid: d754e3e58a088504ab8e21138fc4ee7b, type: 3}
+  m_PrefabInstance: {fileID: 7815599074424003845}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1398577407 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6869456057665473450, guid: 66d94c0ef5639db44a86bc2e44b6262b, type: 3}
@@ -5621,6 +5626,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5676470856031526595, guid: d754e3e58a088504ab8e21138fc4ee7b, type: 3}
   m_PrefabInstance: {fileID: 7815599074424003845}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1810955674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388990269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d900a3fded00684bad815820fdb1836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lights: []
 --- !u!1001 &1817128753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7684,7 +7702,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5676470856031526595, guid: d754e3e58a088504ab8e21138fc4ee7b, type: 3}
       insertIndex: 1
       addedObject: {fileID: 1423873268}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8578263257125955085, guid: d754e3e58a088504ab8e21138fc4ee7b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1810955674}
   m_SourcePrefab: {fileID: 100100000, guid: d754e3e58a088504ab8e21138fc4ee7b, type: 3}
 --- !u!1001 &8011771121211969353
 PrefabInstance:
