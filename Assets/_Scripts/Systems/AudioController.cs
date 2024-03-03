@@ -5,6 +5,8 @@ using UnityEngine;
 public class AudioController : MonoBehaviour
 {
 
+    public static AudioController instance;
+
     [SerializeField]
     private AudioClip[] musicAudio;
     [SerializeField]
@@ -12,6 +14,19 @@ public class AudioController : MonoBehaviour
 
     public AudioSource musicSource;
     public AudioSource sfxSource;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -22,21 +37,23 @@ public class AudioController : MonoBehaviour
     }
 
     void Update(){
-        if(EventController.GetInstability >= 20 && EventController.GetInstability < 40){
-            if( musicSource.clip.name != "music_ES01"){
-                PlayMusic("music_ES01");
-            }
-        }else if(EventController.GetInstability >= 40 && EventController.GetInstability < 60){
-            if(musicSource.clip.name != "music_ES02"){
-                PlayMusic("music_ES02");
-            }
-        }else if(EventController.GetInstability >= 60 && EventController.GetInstability < 80){
-            if(musicSource.clip.name != "music_ES03"){
-                PlayMusic("music_ES03");
-            }
-        }else if(EventController.GetInstability >= 80){
-            if(musicSource.clip.name != "music_ES04"){
-                PlayMusic("music_ES04");
+        if(EventController.GetInstability != null){
+            if(EventController.GetInstability >= 20 && EventController.GetInstability < 40){
+                if( musicSource.clip.name != "music_ES01"){
+                    PlayMusic("music_ES01");
+                }
+            }else if(EventController.GetInstability >= 40 && EventController.GetInstability < 60){
+                if(musicSource.clip.name != "music_ES02"){
+                    PlayMusic("music_ES02");
+                }
+            }else if(EventController.GetInstability >= 60 && EventController.GetInstability < 80){
+                if(musicSource.clip.name != "music_ES03"){
+                    PlayMusic("music_ES03");
+                }
+            }else if(EventController.GetInstability >= 80){
+                if(musicSource.clip.name != "music_ES04"){
+                    PlayMusic("music_ES04");
+                }
             }
         }
 
