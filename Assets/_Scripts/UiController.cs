@@ -23,12 +23,15 @@ public class UiController : MonoBehaviour
     public GameObject gameOverScreen;
     public TMP_Text gameOverScore;
 
+    public AudioController audioController;
+
     public Timer timer;
 
     void Start()
     {
         gameOverScreen.SetActive(false);
         instabilityIndicator.SetActive(false);
+        audioController = GameObject.Find("AudioManager").GetComponent<AudioController>();
     }
 
     public void showHideStability()
@@ -61,7 +64,9 @@ public class UiController : MonoBehaviour
     {
         EventController.GetTimer = false;
         gameOverScreen.SetActive(true);
-        gameOverScore.text = "You survived for " + timer.elapsedTime + " seconds!";
+        audioController.StopMusic();
+        audioController.PlaySoundEffect("reactorExplode");
+        gameOverScore.text = "You survived for " + Mathf.Round(timer.elapsedTime*100)/100 + " seconds!";
     }
 
     void Update()

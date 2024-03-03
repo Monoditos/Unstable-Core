@@ -215,7 +215,6 @@ public class EventController : Singleton
             // Calculate if a minigame should activate based on probability
             if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.Range(0f,1f) < currentMinigameActivationProbability))
             {
-                Debug.Log("ewejbigref");
                 ActivateMinigame();
             }
             else
@@ -443,7 +442,13 @@ public class EventController : Singleton
         FishingMenu.gameObject.SetActive(false);
         QTEMenu.gameObject.SetActive(false);
         uiController.GameOver();
+        StartCoroutine(Wait(6));
         Time.timeScale = 0;
+    }
+
+    public IEnumerator Wait(int seconds)
+    {
+        yield return new WaitForSecondsRealtime(seconds);
     }
 
 }
