@@ -45518,11 +45518,44 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel O Boom (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3130868001073529844, guid: 69c129d9a174bd64a84333be075bc635, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3130868001073529844, guid: 69c129d9a174bd64a84333be075bc635, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4122229738405226975}
   m_SourcePrefab: {fileID: 100100000, guid: 69c129d9a174bd64a84333be075bc635, type: 3}
+--- !u!1 &1825365589704532916 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3130868001073529844, guid: 69c129d9a174bd64a84333be075bc635, type: 3}
+  m_PrefabInstance: {fileID: 3613597254925901888}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &4122229738405226975
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825365589704532916}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.80898, y: 6.341799, z: 6.8716397}
+  m_Center: {x: -0.55897313, y: -1.6709034, z: -0.79736143}
 --- !u!4 &3867654143805097899 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 69c129d9a174bd64a84333be075bc635, type: 3}
