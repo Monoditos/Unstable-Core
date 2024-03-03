@@ -15,8 +15,9 @@ public class StartCode : MonoBehaviour
     private void Start()
     {
         audioController = GameObject.Find("AudioManager").GetComponent<AudioController>();
+    }
+    private void OnEnable(){
         codeUsed = GetCode();
-        Debug.Log("Code used: " + codeUsed.word);
         wordTxt.text = codeUsed.word;
     }
     Codes GetCode()
