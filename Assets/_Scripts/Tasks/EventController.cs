@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EventController : Singleton
 {
@@ -25,9 +24,8 @@ public class EventController : Singleton
     // Countdown timer for active minigames
     private static float minigameTimer = 0f;
 
-    public static int stability = 100;
+    public static int instability = 0;
 
-    public Slider stabilityMeter;
     public GameObject fuseboxMenu;
     public GameObject hexMenu;
     public GameObject QTEMenu;
@@ -67,22 +65,34 @@ public class EventController : Singleton
         set { hexcodeCompleted = value; }
     }
 
+    public static int GetInstability
+    {
+        get { return instability; }
+        set { instability = value; }
+    }
+
     // REACTOR LOGIC
 
     private void IncreaseInstability()
     {
-        // Increase reactor instability when a minigame is failed
+        instability += 10;
+        if(instability >= 100){
+            // Increase reactor instability when a minigame is failed
+            instability = 100;
+            Debug.Log("Core too unstable, prepare to die!");
+            //gamestate = "gameover";
+        }
         Debug.Log("Instability increased!");
-        stability += 10;
-        stabilityMeter.value = stability;
     }
 
     private void DecreaseInstability()
     {
-        // Increase reactor instability when a minigame is failed
+        instability -= 10;
+        if(instability <= 0){
+            // Increase reactor instability when a minigame is failed
+            instability = 0;
+        }
         Debug.Log("Instability decreased!");
-        stability -= 10;
-        stabilityMeter.value = stability;
     }
 
     // MINIGAME EVENT CONTROLLER
@@ -117,7 +127,7 @@ public class EventController : Singleton
 
     private void Start()
     {
-        stabilityMeter.value = stability;
+
     }
 
     private void Update()
@@ -140,6 +150,7 @@ public class EventController : Singleton
             {
                 // Minigame time is up, increase instability or decrease it if completed
                 GetFusebox = false;
+                GetFuseboxCompleted = false;
                 // Debug.Log("Fusebox minigame time up!");
                 DecreaseInstability();
             }
@@ -173,6 +184,7 @@ public class EventController : Singleton
             {
                 // Minigame time is up, increase instability or decrease it if completed
                 GetHexcode = false;
+                GetHexcodeCompleted = false;
                 // Debug.Log("Hexcode minigame time up!");
                 DecreaseInstability();
             }
