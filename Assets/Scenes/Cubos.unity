@@ -643,6 +643,7 @@ MonoBehaviour:
   fuseboxMenu: {fileID: 945582767}
   hexMenu: {fileID: 524921570}
   QTEMenu: {fileID: 485716846}
+  FishingMenu: {fileID: 3621526364939488741}
 --- !u!4 &280563356
 Transform:
   m_ObjectHideFlags: 0
@@ -1356,7 +1357,7 @@ GameObject:
   - component: {fileID: 518780083}
   - component: {fileID: 518780082}
   m_Layer: 5
-  m_Name: agua
+  m_Name: pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3696,6 +3697,7 @@ RectTransform:
   - {fileID: 680185464}
   - {fileID: 1996604080}
   - {fileID: 1709532136}
+  - {fileID: 7475001312989096508}
   - {fileID: 945582768}
   - {fileID: 485716847}
   - {fileID: 1983503282}
@@ -4450,6 +4452,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66d94c0ef5639db44a86bc2e44b6262b, type: 3}
+--- !u!1 &3621526364939488741 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4223381374214217257, guid: 0fd888bf5d086e046be5c8a792b9856d, type: 3}
+  m_PrefabInstance: {fileID: 5973303682558635481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3912557502096422087 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7868254364888880478, guid: 5b47f96d94bb6fa459d8a61c96f85c27, type: 3}
@@ -4830,6 +4837,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1996604079}
     - target: {fileID: 4593764497544384139, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
+      propertyPath: FishingMenu
+      value: 
+      objectReference: {fileID: 3621526364939488741}
+    - target: {fileID: 4593764497544384139, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
       propertyPath: FuseboxMenu
       value: 
       objectReference: {fileID: 945582767}
@@ -4853,6 +4864,72 @@ PrefabInstance:
       addedObject: {fileID: 775247707}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
+--- !u!1001 &5973303682558635481
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1970233809}
+    m_Modifications:
+    - target: {fileID: 4041553080560064419, guid: 0fd888bf5d086e046be5c8a792b9856d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -367.299
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041553080560064419, guid: 0fd888bf5d086e046be5c8a792b9856d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -298.936
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041553080560064419, guid: 0fd888bf5d086e046be5c8a792b9856d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.777
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041553080560064419, guid: 0fd888bf5d086e046be5c8a792b9856d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041553080560064419, guid: 0fd888bf5d086e046be5c8a792b9856d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041553080560064419, guid: 0fd888bf5d086e046be5c8a792b9856d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041553080560064419, guid: 0fd888bf5d086e046be5c8a792b9856d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041553080560064419, guid: 0fd888bf5d086e046be5c8a792b9856d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041553080560064419, guid: 0fd888bf5d086e046be5c8a792b9856d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041553080560064419, guid: 0fd888bf5d086e046be5c8a792b9856d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223381374214217257, guid: 0fd888bf5d086e046be5c8a792b9856d, type: 3}
+      propertyPath: m_Name
+      value: FishMiniGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223381374214217257, guid: 0fd888bf5d086e046be5c8a792b9856d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0fd888bf5d086e046be5c8a792b9856d, type: 3}
+--- !u!4 &7475001312989096508 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4041553080560064419, guid: 0fd888bf5d086e046be5c8a792b9856d, type: 3}
+  m_PrefabInstance: {fileID: 5973303682558635481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7815599074424003845
 PrefabInstance:
   m_ObjectHideFlags: 0
