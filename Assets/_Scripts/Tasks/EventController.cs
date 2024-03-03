@@ -46,6 +46,8 @@ public class EventController : Singleton
     public GameObject QTEMenu;
     public GameObject FishingMenu;
 
+    public GameObject terminalMenu;
+
 
     public static bool GetTimer
     {
@@ -405,6 +407,11 @@ public class EventController : Singleton
     public void EndGame()
     {
         uiController = GameObject.Find("UI Canvas").GetComponent<UiController>();
+        terminalMenu.gameObject.SetActive(false);
+        fuseboxMenu.gameObject.SetActive(false);
+        hexMenu.gameObject.SetActive(false);
+        FishingMenu.gameObject.SetActive(false);
+        QTEMenu.gameObject.SetActive(false);
         uiController.GameOver();
         Time.timeScale = 0;
     }
