@@ -80,7 +80,7 @@ public class UiController : MonoBehaviour
 
         instabilityMeter.value = (float)EventController.GetInstability / 100;
         sliderBarFill.color = Color.Lerp(Color.green, Color.red, instabilityMeter.value);
-        instabilityText.text = "Instability Status: " + EventController.GetInstability.ToString() + "%";
+        instabilityText.text = "Instability percentage: " + EventController.GetInstability.ToString();
     }
 
     public void ShowMinimapAlert(int alertType) {
