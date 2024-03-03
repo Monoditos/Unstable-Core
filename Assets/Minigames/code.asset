@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: code
   m_EditorClassIdentifier: 
   word: code
-  answer: 636F6465
+  answer: 436F4445
   spawnChance: 30

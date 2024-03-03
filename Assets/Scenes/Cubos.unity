@@ -128,11 +128,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1038958184055648060, guid: 36b79e1a7ded1af4d9d086af6da644cc, type: 3}
   m_PrefabInstance: {fileID: 748491970}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &35984237 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1064043389352787539, guid: 1369983bf8f79cc4b8e62ee0dc2577fe, type: 3}
-  m_PrefabInstance: {fileID: 1817128753}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &85992266 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1038958184055648060, guid: 36b79e1a7ded1af4d9d086af6da644cc, type: 3}
@@ -646,7 +641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1787430563}
   fuseboxMenu: {fileID: 945582767}
-  hexMenu: {fileID: 0}
+  hexMenu: {fileID: 524921570}
   QTEMenu: {fileID: 485716846}
 --- !u!4 &280563356
 Transform:
@@ -1424,6 +1419,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 518780080}
   m_CullTransparentMesh: 1
+--- !u!1 &524921570 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1250191293396504372, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
+  m_PrefabInstance: {fileID: 8011771121211969353}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &565128157
 GameObject:
   m_ObjectHideFlags: 0
@@ -4783,7 +4783,7 @@ PrefabInstance:
     - target: {fileID: 4593764497544384139, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
       propertyPath: HexMenu
       value: 
-      objectReference: {fileID: 35984237}
+      objectReference: {fileID: 524921570}
     - target: {fileID: 4593764497544384139, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
       propertyPath: QTEMenu
       value: 
@@ -4968,8 +4968,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: HexMinigame
       objectReference: {fileID: 0}
-    - target: {fileID: 1250191293396504372, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 1690326157399697818, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289949278570639250, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.08649588
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289949278570639250, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289949278570639250, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
+      propertyPath: m_fontColor.r
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

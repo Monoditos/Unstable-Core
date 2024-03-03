@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordTxt: {fileID: 5825915879079993023}
-  answerTxt: {fileID: 0}
+  answerTxt: {fileID: 7719173839852089388}
   codeList:
   - {fileID: 11400000, guid: 523b9465a88b48f439bac77bc7bf8129, type: 2}
   - {fileID: 11400000, guid: b1be0b1c9a53b7e4f8f0c55b5d548dc3, type: 2}
