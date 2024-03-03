@@ -12,7 +12,7 @@ public class UiController : MonoBehaviour
     public GameObject minimap;
     public GameObject amogus;
     public GameObject[] minimapAlerts;
-    
+
     [Header("Stability Meter")]
     public GameObject instabilityIndicator;
     public Image sliderBarFill;
@@ -25,56 +25,80 @@ public class UiController : MonoBehaviour
 
     public Timer timer;
 
-    void Start() {
+    void Start()
+    {
         gameOverScreen.SetActive(false);
         instabilityIndicator.SetActive(false);
     }
 
-    public void showHideStability() {
-        if (instabilityIndicator.activeSelf) {
+    public void showHideStability()
+    {
+        if (instabilityIndicator.activeSelf)
+        {
             instabilityIndicator.SetActive(false);
-        } else {
+        }
+        else
+        {
             instabilityIndicator.SetActive(true);
         }
     }
 
-    public void showHideMinimap() {
-        if (minimap.activeSelf){
-            minimap.SetActive(false); 
+    public void showHideMinimap()
+    {
+        if (minimap.activeSelf)
+        {
+            minimap.SetActive(false);
             amogus.SetActive(false);
-        } else {
-           minimap.SetActive(true);
-           amogus.SetActive(true); 
+        }
+        else
+        {
+            minimap.SetActive(true);
+            amogus.SetActive(true);
         }
     }
 
-    public void GameOver(){
+    public void GameOver()
+    {
+        EventController.GetTimer = false;
         gameOverScreen.SetActive(true);
         gameOverScore.text = "You survived for " + timer.elapsedTime + " seconds!";
     }
 
-    void Update() {
-        if (EventController.GetFusebox) {
+    void Update()
+    {
+        if (EventController.GetFusebox)
+        {
             ShowMinimapAlert(switchAlert);
-        } else if(EventController.GetFuseboxCompleted || !EventController.GetFusebox) {
+        }
+        else if (EventController.GetFuseboxCompleted || !EventController.GetFusebox)
+        {
             HideMinimapAlert(switchAlert);
         }
 
-        if (EventController.GetHexcode) {
+        if (EventController.GetHexcode)
+        {
             ShowMinimapAlert(hexAlert);
-        } else if(EventController.GetHexcodeCompleted || !EventController.GetHexcode) {
+        }
+        else if (EventController.GetHexcodeCompleted || !EventController.GetHexcode)
+        {
             HideMinimapAlert(hexAlert);
         }
 
-        if (EventController.GetQTE) {
+        if (EventController.GetQTE)
+        {
             ShowMinimapAlert(qteAlert);
-        } else if(EventController.GetQTECompleted || !EventController.GetQTE) {
+        }
+        else if (EventController.GetQTECompleted || !EventController.GetQTE)
+        {
             HideMinimapAlert(qteAlert);
         }
 
-        if (EventController.GetFishing) {
+        if (EventController.GetFishing)
+        {
             ShowMinimapAlert(pipeAlert);
-        } else if(EventController.GetFishingCompleted || !EventController.GetFishing) {
+        }
+        else if (EventController.GetFishingCompleted || !EventController.GetFishing)
+        {
             HideMinimapAlert(pipeAlert);
         }
 
@@ -83,11 +107,13 @@ public class UiController : MonoBehaviour
         instabilityText.text = "Instability percentage: " + EventController.GetInstability.ToString();
     }
 
-    public void ShowMinimapAlert(int alertType) {
+    public void ShowMinimapAlert(int alertType)
+    {
         minimapAlerts[alertType].SetActive(true);
     }
 
-    public void HideMinimapAlert(int alertType) {
+    public void HideMinimapAlert(int alertType)
+    {
         minimapAlerts[alertType].SetActive(false);
     }
 

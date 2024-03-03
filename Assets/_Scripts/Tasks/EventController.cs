@@ -21,6 +21,7 @@ public class EventController : Singleton
 
     private MovimentoPlayer playerScript;
     // Minigame states
+    private static bool timer = true;
     public static int switchCounter = 0;
     public static int streak = 0;
     private static bool fusebox = false;
@@ -44,6 +45,13 @@ public class EventController : Singleton
     public GameObject hexMenu;
     public GameObject QTEMenu;
     public GameObject FishingMenu;
+
+
+    public static bool GetTimer
+    {
+        get { return timer; }
+        set { timer = value; }
+    }
 
     public static int GetSwitches
     {
@@ -129,8 +137,8 @@ public class EventController : Singleton
         while (true)
         {
 
-            // int randomNumber = Random.Range(0, 100);
-            int randomNumber = 40;
+            int randomNumber = Random.Range(0, 100);
+            // int randomNumber = 40;
             // Determine which minigame to activate (for example, randomly)
             if (randomNumber < 25)
             {
@@ -177,7 +185,8 @@ public class EventController : Singleton
         }
     }
 
-    private void Start(){
+    private void Start()
+    {
 
         currentWaitTime = initialWaitTime;
         currentMinigameActivationProbability = initialMinigameActivationProbability;
@@ -194,17 +203,19 @@ public class EventController : Singleton
             yield return new WaitForSeconds(currentWaitTime); // Wait for 3 seconds
 
             // Calculate if a minigame should activate based on the 15% probability
-            if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.Range(0f,1f) < initialMinigameActivationProbability))
+            if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.Range(0f, 1f) < initialMinigameActivationProbability))
             {
                 ActivateMinigame();
-            } else {
+            }
+            else
+            {
                 currentWaitTime *= 0.995f; // Decrease wait time by 1% (adjust this value as needed)
                 currentWaitTime = Mathf.Max(currentWaitTime, 1f); // Ensure wait time doesn't go below 0.1 seconds
                 currentMinigameActivationProbability *= 1.01f;
                 currentMinigameActivationProbability = Mathf.Min(currentMinigameActivationProbability, 0.33f);
 
-                Debug.Log(currentMinigameActivationProbability + "% Probability");
-                Debug.Log(currentWaitTime + ": Time of Wait");
+                // Debug.Log(currentMinigameActivationProbability + "% Probability");
+                // Debug.Log(currentWaitTime + ": Time of Wait");
             }
         }
     }
