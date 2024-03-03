@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   word: TASK
   answer: 5441534B
-  spawnChance: 60
+  spawnChance: 40

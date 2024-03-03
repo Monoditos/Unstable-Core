@@ -11,7 +11,7 @@ public class EventController : Singleton
     // Constants for minigame probabilities and durations
     private const float initialMinigameActivationProbability = 0.20f; // Adjust this value as needed
     private float currentMinigameActivationProbability;
-    public const float initialWaitTime = 5f;
+    public const float initialWaitTime = 4f;
     public float currentWaitTime;
 
     public GameObject player;
@@ -129,13 +129,14 @@ public class EventController : Singleton
         while (true)
         {
 
-            int randomNumber = Random.Range(0, 100);
+            // int randomNumber = Random.Range(0, 100);
+            int randomNumber = 40;
             // Determine which minigame to activate (for example, randomly)
             if (randomNumber < 25)
             {
                 if (GetFusebox)
                 {
-                    continue;
+                    break;
                 }
                 GetFusebox = true;
                 GetSwitches = 0;
@@ -146,31 +147,31 @@ public class EventController : Singleton
             {
                 if (GetHexcode)
                 {
-                    continue;
+                    break;
                 }
                 GetHexcode = true;
-                Debug.Log("Cooling binaries anomaly, fix it before critical failure.");
+                Debug.Log("Hex Binaries scrambled, fix it before critical failure.");
                 break;
             }
             if (randomNumber < 75)
             {
                 if (GetQTE)
                 {
-                    continue;
+                    break;
                 }
                 GetQTE = true;
                 GetStreak = 0;
-                Debug.Log("Exit door is beeing forced, fix it before critical failure.");
+                Debug.Log("Anomaly at doorstep, secure it.");
                 break;
             }
             if (randomNumber < 100)
             {
                 if (GetFishing)
                 {
-                    continue;
+                    break;
                 }
                 GetFishing = true;
-                Debug.Log("Something got stuck in the pipes, fix it before critical failure.");
+                Debug.Log("Pipes stuck, fix it before critical failure.");
                 break;
             }
         }
@@ -276,6 +277,7 @@ public class EventController : Singleton
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
             audioManager.PlaySoundEffect("sommagicocompletaralgo");
             FishingMenu.gameObject.SetActive(false);
+            Debug.Log("Pipes Unblocked!");
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
         }
