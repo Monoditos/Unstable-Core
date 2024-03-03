@@ -97,7 +97,7 @@ public class MovimentoPlayer : MonoBehaviour
             {   
                 consoleTxt.SetActive(true);
                 // Check if Enter key is pressed
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetKeyDown(KeyCode.F))
                 {
                     string objectName = hit.transform.name;
                     if (menuopen)

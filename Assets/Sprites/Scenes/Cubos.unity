@@ -641,7 +641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1787430563}
   audioManager: {fileID: 1541397523}
-  uiController: {fileID: 0}
+  uiController: {fileID: 1970233810}
   fuseboxMenu: {fileID: 945582767}
   hexMenu: {fileID: 524921570}
   QTEMenu: {fileID: 485716846}
