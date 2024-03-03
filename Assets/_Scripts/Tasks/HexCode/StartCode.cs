@@ -11,12 +11,13 @@ public class StartCode : MonoBehaviour
     private AudioController audioController;
     Codes codeUsed;
     public List<Codes> codeList = new List<Codes>();
-    
+
     private void Start()
     {
         audioController = GameObject.Find("AudioManager").GetComponent<AudioController>();
+    }
+    private void OnEnable(){
         codeUsed = GetCode();
-        Debug.Log("Code used: " + codeUsed.word);
         wordTxt.text = codeUsed.word;
     }
     Codes GetCode()
@@ -57,12 +58,14 @@ public class StartCode : MonoBehaviour
         if (answerTxt.text == codeUsed.answer)
         {
             EventController.GetHexcodeCompleted = true;
+            EventController.GetHexcode = false;
+            Debug.Log("Hex solved.");
         }
         else
         {
             EventController.CriticalError(2);
             audioController.PlaySoundEffect("erro");
-            Debug.Log("Incorrect, damages were suffered!");
+            Debug.LogError("Incorrect, damages were suffered!");
         }
     }
 

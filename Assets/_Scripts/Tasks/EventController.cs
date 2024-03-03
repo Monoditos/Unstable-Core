@@ -11,11 +11,8 @@ public class EventController : Singleton
     // Constants for minigame probabilities and durations
     private const float initialMinigameActivationProbability = 0.20f; // Adjust this value as needed
     private float currentMinigameActivationProbability;
-    public const float initialWaitTime = 5f;
+    public const float initialWaitTime = 4f;
     public float currentWaitTime;
-
-    private static bool fromCritical = false;
-
 
     public GameObject player;
     private CameraShake cameraShake;
@@ -24,6 +21,7 @@ public class EventController : Singleton
 
     private MovimentoPlayer playerScript;
     // Minigame states
+    private static bool timer = true;
     public static int switchCounter = 0;
     public static int streak = 0;
     private static bool fusebox = false;
@@ -39,7 +37,6 @@ public class EventController : Singleton
     private static bool fishingCompleted = false;
 
     // Countdown timer for active minigames
-    private static float minigameTimer = 0f;
 
     public static int instability = 0;
 
@@ -48,10 +45,13 @@ public class EventController : Singleton
     public GameObject QTEMenu;
     public GameObject FishingMenu;
 
-    public static bool GetFromCritical
+    public GameObject terminalMenu;
+
+
+    public static bool GetTimer
     {
-        get { return fromCritical; }
-        set { fromCritical = value; }
+        get { return timer; }
+        set { timer = value; }
     }
 
     public static int GetSwitches
@@ -134,12 +134,12 @@ public class EventController : Singleton
 
     private void ActivateMinigame()
     {
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
         audioManager.PlaySoundEffect("somquandopassathreshold");
         while (true)
         {
 
             int randomNumber = Random.Range(0, 100);
+            // int randomNumber = 40;
             // Determine which minigame to activate (for example, randomly)
             if (randomNumber < 25)
             {
@@ -159,7 +159,7 @@ public class EventController : Singleton
                     continue;
                 }
                 GetHexcode = true;
-                Debug.Log("Cooling binaries anomaly, fix it before critical failure.");
+                Debug.Log("Hex Binaries scrambled, fix it before critical failure.");
                 break;
             }
             if (randomNumber < 75)
@@ -170,7 +170,7 @@ public class EventController : Singleton
                 }
                 GetQTE = true;
                 GetStreak = 0;
-                Debug.Log("Exit door is beeing forced, fix it before critical failure.");
+                Debug.Log("Anomaly at doorstep, secure it.");
                 break;
             }
             if (randomNumber < 100)
@@ -180,13 +180,14 @@ public class EventController : Singleton
                     continue;
                 }
                 GetFishing = true;
-                Debug.Log("Something got stuck in the pipes, fix it before critical failure.");
+                Debug.Log("Pipes stuck, fix it before critical failure.");
                 break;
             }
         }
     }
 
-    private void Start(){
+    private void Start()
+    {
 
         currentWaitTime = initialWaitTime;
         currentMinigameActivationProbability = initialMinigameActivationProbability;
@@ -200,20 +201,22 @@ public class EventController : Singleton
     {
         while (true)
         {
-            yield return new WaitForSeconds(currentWaitTime); // Wait for 3 seconds
+            yield return new WaitForSeconds(currentWaitTime);
 
-            // Calculate if a minigame should activate based on the 15% probability
-            if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.Range(0f,1f) < initialMinigameActivationProbability))
+            // Calculate if a minigame should activate based on probability
+            if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.Range(0f,1f) < currentMinigameActivationProbability))
             {
                 ActivateMinigame();
-            } else {
-                currentWaitTime *= 0.995f; // Decrease wait time by 1% (adjust this value as needed)
-                currentWaitTime = Mathf.Max(currentWaitTime, 1f); // Ensure wait time doesn't go below 0.1 seconds
+            }
+            else
+            {
+                currentWaitTime *= 0.99f;
+                currentWaitTime = Mathf.Max(currentWaitTime, 5f);
                 currentMinigameActivationProbability *= 1.01f;
                 currentMinigameActivationProbability = Mathf.Min(currentMinigameActivationProbability, 0.33f);
 
-                Debug.Log(currentMinigameActivationProbability + "% Probability");
-                Debug.Log(currentWaitTime + ": Time of Wait");
+                // Debug.Log(currentMinigameActivationProbability + "% Probability");
+                // Debug.Log(currentWaitTime + ": Time of Wait");
             }
         }
     }
@@ -244,67 +247,49 @@ public class EventController : Singleton
 
         if (GetFuseboxCompleted)
         {
-            GetInstability -= 5;
+            GetInstability -= 3;
             isCountingFuse = false;
             GetFuseboxCompleted = false;
-            if(!GetFromCritical){
-                audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
-                audioManager.PlaySoundEffect("taskWin");
-                Debug.Log("Fusebox fixed!");
-            }
-            GetFromCritical = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
+            audioManager.PlaySoundEffect("sommagicocompletaralgo");
             fuseboxMenu.gameObject.SetActive(false);
+            Debug.Log("Fusebox fixed!");
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
         }
 
         if (GetHexcodeCompleted)
         {
-            GetInstability -= 5;
+            GetInstability -= 3;
             isCountingHex = false;
             GetHexcodeCompleted = false;
-            if(!GetFromCritical){
-                audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
-                audioManager.PlaySoundEffect("taskWin");
-                Debug.Log("Cooling Binaries fixed!");
-            }
-            GetFromCritical = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
+            audioManager.PlaySoundEffect("sommagicocompletaralgo");
             hexMenu.gameObject.SetActive(false);
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
         }
         if (GetQTECompleted)
         {
-            GetInstability -= 5;
+            GetInstability -= 3;
             isCountingQTE = false;
             GetQTECompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
-            if(!GetFromCritical){
-                audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
-                audioManager.PlaySoundEffect("taskWin");
-                Debug.Log("Security door secured!");
-            }
-            GetFromCritical = false;
+            audioManager.PlaySoundEffect("sommagicocompletaralgo");
             QTEMenu.gameObject.SetActive(false);
+            Debug.Log("Security door secured!");
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
         }
         if (GetFishingCompleted)
         {
-            GetInstability -= 5;
+            GetInstability -= 3;
             isCountingFishing = false;
             GetFishingCompleted = false;
-            GetFromCritical = true;
-            if(!GetFromCritical){
-                MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
-                audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
-            }
-            GetFromCritical = false;
-            audioManager.PlaySoundEffect("taskWin");
+            MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
+            audioManager.PlaySoundEffect("sommagicocompletaralgo");
             FishingMenu.gameObject.SetActive(false);
-            playerScript = player.GetComponent<MovimentoPlayer>();
+            Debug.Log("Pipes Unblocked!");
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
         }
@@ -396,27 +381,22 @@ public class EventController : Singleton
 
     public static void CriticalError(int game)
     {
-        AudioController audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
-        audioManager.PlaySoundEffect("taskLost");
         switch (game)
         {
             case 1:
                 GetFusebox = false;
                 GetSwitches = 0;
                 GetFuseboxCompleted = true;
-                GetFromCritical = true;
                 GetInstability += 15;
                 break;
             case 2:
                 GetHexcode = false;
                 GetHexcodeCompleted = true;
-                GetFromCritical = true;
                 GetInstability += 15;
                 break;
             case 3:
                 GetQTE = false;
                 GetQTECompleted = true;
-                GetFromCritical = true;
                 GetStreak = 0;
                 GetInstability += 15;
                 break;
@@ -426,6 +406,11 @@ public class EventController : Singleton
     public void EndGame()
     {
         uiController = GameObject.Find("UI Canvas").GetComponent<UiController>();
+        terminalMenu.gameObject.SetActive(false);
+        fuseboxMenu.gameObject.SetActive(false);
+        hexMenu.gameObject.SetActive(false);
+        FishingMenu.gameObject.SetActive(false);
+        QTEMenu.gameObject.SetActive(false);
         uiController.GameOver();
         Time.timeScale = 0;
     }

@@ -150,11 +150,11 @@ public class MovimentoPlayer : MonoBehaviour
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 905);
                 Transform childTransform = TerminalConsole.transform.Find("Viewport");
                 childTransform.gameObject.SetActive(true);
-                AudioController audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
-                audioManager.PlaySoundEffect("terminalOpen");
+                Debug.ClearDeveloperConsole();
                 UiController.showHideStability();
                 UiController.showHideMinimap();
                 break;
+
             case "QTE":
                 if(EventController.GetQTE)
                 {
