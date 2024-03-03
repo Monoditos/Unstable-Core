@@ -135,7 +135,7 @@ public class MovimentoPlayer : MonoBehaviour
             case "HexcodePanel":
                 // Open HexcodePanel menu
                 // Debug.Log("Opening HexcodePanel menu...");
-                if(eventController.GetHexcode){
+                if(EventController.GetHexcode){
                     HexMenu.gameObject.SetActive(true);
                 } else {
                     CloseMenu(objectName);
@@ -152,7 +152,7 @@ public class MovimentoPlayer : MonoBehaviour
                 break;
 
             case "QTE":
-            if(eventController.GetQTE)
+            if(EventController.GetQTE)
             {
                 QTEMenu.gameObject.SetActive(true);
             } else {
@@ -176,18 +176,18 @@ public class MovimentoPlayer : MonoBehaviour
         {
             case "Fusebox":
                 // Open Fusebox menu
-                Debug.Log("Closing Fusebox menu...");
+                // Debug.Log("Closing Fusebox menu...");
                 FuseboxMenu.gameObject.SetActive(false);
                 break;
 
             case "HexcodePanel":
                 // Open HexcodePanel menu
-                Debug.Log("Closing HexcodePanel menu...");
+                // Debug.Log("Closing HexcodePanel menu...");
                 HexMenu.gameObject.SetActive(false);
                 break;
 
             case "Terminal":
-                Debug.Log("Closing Terminal menu...");
+                // Debug.Log("Closing Terminal menu...");
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0);
                 Transform childTransform = TerminalConsole.transform.Find("Viewport");
