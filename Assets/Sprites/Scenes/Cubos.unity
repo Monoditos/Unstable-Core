@@ -6595,14 +6595,14 @@ MonoBehaviour:
   topPivot: {fileID: 7203451889202107285}
   bottomPivot: {fileID: 877347062145809950}
   fish: {fileID: 2527312458096660561}
-  timerMultiplier: 6
-  smoothMotion: 2
+  timerMultiplier: 2
+  smoothMotion: 1
   hook: {fileID: 845078118298214125}
   hookSize: 0.15
-  hookPower: 1
+  hookPower: 0.5
   hookPullPower: 0.01
   hookGravityPower: 0.005
-  hookProgressDegredationPower: 1
+  hookProgressDegredationPower: 0.3
   hookSpriteRenderer: {fileID: 961897166443813743}
   progressBarContainer: {fileID: 4117065395182661487}
 --- !u!1001 &2422778832578483551

@@ -49,6 +49,7 @@ public class FishingMiniGame : MonoBehaviour
         Fish();
         Hook();
         ProgressCheck();
+        WinCon();
     }
     void Fish()
     {
@@ -65,7 +66,7 @@ public class FishingMiniGame : MonoBehaviour
 
     void Hook()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space))
         {
             hookPullVelocity += hookPullPower * Time.deltaTime;
         }
@@ -82,7 +83,15 @@ public class FishingMiniGame : MonoBehaviour
     }
 
 
-
+    private void WinCon()
+    {
+        if (hookProgress >= 1f)
+        {
+            hookProgress = 0f;
+            EventController.GetFishing = false;
+            EventController.GetFishingCompleted = true;
+        }
+    }
     private void ProgressCheck()
     {
         Vector3 ls = progressBarContainer.localScale;

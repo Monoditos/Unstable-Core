@@ -339,11 +339,6 @@ public class EventController : Singleton
                 GetStreak = 0;
                 GetInstability += 15;
                 break;
-            case 4:
-                GetFishing = false;
-                GetFishingCompleted = true;
-                GetInstability = 100;
-                break;
         }
     }
 
