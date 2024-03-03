@@ -129,8 +129,8 @@ public class EventController : Singleton
         while (true)
         {
 
-            // int randomNumber = Random.Range(0, 100);
-            int randomNumber = 40;
+            int randomNumber = Random.Range(0, 100);
+            // int randomNumber = 40;
             // Determine which minigame to activate (for example, randomly)
             if (randomNumber < 25)
             {
