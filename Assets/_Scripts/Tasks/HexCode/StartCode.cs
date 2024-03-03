@@ -19,6 +19,7 @@ public class StartCode : MonoBehaviour
     private void OnEnable(){
         codeUsed = GetCode();
         wordTxt.text = codeUsed.word;
+        answerTxt.text = "";
     }
     Codes GetCode()
     {
