@@ -53,11 +53,12 @@ public class StartCode : MonoBehaviour
     {
         if (answerTxt.text == codeUsed.answer)
         {
-            Debug.Log("Correct");
+            EventController.GetHexcodeCompleted = true;
         }
         else
         {
-            Debug.Log("Incorrect");
+            EventController.CriticalError(2);
+            Debug.Log("Incorrect, damages were suffered!");
         }
     }
 

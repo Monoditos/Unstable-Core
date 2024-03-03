@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: reactor
   m_EditorClassIdentifier: 
   word: reactor
-  answer: 52454143546f52
+  answer: 52454143546F52
   spawnChance: 10
