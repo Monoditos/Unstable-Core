@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour
 
     public GameObject tutorialScreen;
 
+    public GameObject controlsScreen;
+
     public GameObject optionsScreen;
 
     public GameObject creditsScreen;
@@ -20,12 +22,22 @@ public class MainMenu : MonoBehaviour
         yield return new WaitForSecondsRealtime(seconds);
         Debug.Log("tutorial hidden");
         //tutorialScreen.SetActive(false);
+        StartCoroutine(Controls(5));
+    }
+
+    public IEnumerator Controls(int seconds)
+    {
+        Debug.Log("controls shown");
+        controlsScreen.SetActive(true);
+        yield return new WaitForSecondsRealtime(seconds);
+        Debug.Log("controls hidden");
+        //tutorialScreen.SetActive(false);
         SceneManager.LoadScene("Cubos");
     }
     public void PlayGame()
     {
         Debug.Log("PlayGame");
-        StartCoroutine(Tutorial(10)) ;
+        StartCoroutine(Tutorial(5)) ;
     }
 
     public void OpenOptions()
