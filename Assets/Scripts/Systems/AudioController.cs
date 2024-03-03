@@ -39,6 +39,20 @@ public class AudioController : MonoBehaviour
                 PlayMusic("music_ES04");
             }
         }
+
+        if(EventController.GetFusebox || EventController.GetHexcode || EventController.GetQTE || EventController.GetFishing){
+            if(sfxSource.clip.name != "somquandopassathreshold"){
+                PlaySoundEffect("somquandopassathreshold");
+            }
+        }
+
+        if(EventController.GetFuseboxCompleted || EventController.GetHexcodeCompleted || EventController.GetQTECompleted || EventController.GetFishingCompleted){
+            if(sfxSource.clip.name != "sommagicocompletaralgo"){
+                PlaySoundEffect("sommagicocompletaralgo");
+            }
+
+        }
+
     }
 
     public void PlayMusic(string name)
@@ -61,7 +75,6 @@ public class AudioController : MonoBehaviour
             if (audio.name == name)
             {
                 sfxSource.clip = audio;
-                sfxSource.loop = true;
                 sfxSource.Play();
                 return;
             }
