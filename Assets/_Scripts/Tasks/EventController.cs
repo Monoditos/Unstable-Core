@@ -203,8 +203,8 @@ public class EventController : Singleton
                 currentMinigameActivationProbability *= 1.01f;
                 currentMinigameActivationProbability = Mathf.Min(currentMinigameActivationProbability, 0.33f);
 
-                Debug.Log(currentMinigameActivationProbability + "% Probability");
-                Debug.Log(currentWaitTime + ": Time of Wait");
+                // Debug.Log(currentMinigameActivationProbability + "% Probability");
+                // Debug.Log(currentWaitTime + ": Time of Wait");
             }
         }
     }
