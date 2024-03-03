@@ -116,11 +116,11 @@ public class QTESystem : MonoBehaviour
             EndQTE(2);
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
 
         correct = 0;
         keyTxt.text = "";
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
 
         waiting = 0;
         canProcessInput = true; // Enable input processing after coroutine execution

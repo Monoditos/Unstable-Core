@@ -10,9 +10,9 @@ public class EventController : Singleton
     public static EventController instance;
 
     // Constants for minigame probabilities and durations
-    private const float initialMinigameActivationProbability = 0.80f; // Adjust this value as needed
+    private const float initialMinigameActivationProbability = 0.20f; // Adjust this value as needed
     private float currentMinigameActivationProbability;
-    public const float initialWaitTime = 4f;
+    public const float initialWaitTime = 5f;
     public float currentWaitTime;
 
     public GameObject player;
@@ -257,7 +257,7 @@ public class EventController : Singleton
 
         if (GetFuseboxCompleted)
         {
-            GetInstability -= 3;
+            GetInstability -= 2;
             isCountingFuse = false;
             GetFuseboxCompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
@@ -274,7 +274,7 @@ public class EventController : Singleton
 
         if (GetHexcodeCompleted)
         {
-            GetInstability -= 3;
+            GetInstability -= 2;
             isCountingHex = false;
             GetHexcodeCompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
@@ -290,7 +290,7 @@ public class EventController : Singleton
         }
         if (GetQTECompleted)
         {
-            GetInstability -= 3;
+            GetInstability -= 2;
             isCountingQTE = false;
             GetQTECompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
@@ -306,7 +306,7 @@ public class EventController : Singleton
         }
         if (GetFishingCompleted)
         {
-            GetInstability -= 3;
+            GetInstability -= 2;
             isCountingFishing = false;
             GetFishingCompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
