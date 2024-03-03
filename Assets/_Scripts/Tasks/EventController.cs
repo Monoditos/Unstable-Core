@@ -191,14 +191,14 @@ public class EventController : Singleton
     {
         while (true)
         {
-            yield return new WaitForSeconds(currentWaitTime); // Wait for 3 seconds
+            yield return new WaitForSeconds(currentWaitTime);
 
-            // Calculate if a minigame should activate based on the 15% probability
-            if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.Range(0f,1f) < initialMinigameActivationProbability))
+            // Calculate if a minigame should activate based on probability
+            if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.Range(0f,1f) < currentMinigameActivationProbability))
             {
                 ActivateMinigame();
             } else {
-                currentWaitTime *= 0.995f; // Decrease wait time by 1% (adjust this value as needed)
+                currentWaitTime *= 0.99f; // Decrease wait time by 1% (adjust this value as needed)
                 currentWaitTime = Mathf.Max(currentWaitTime, 1f); // Ensure wait time doesn't go below 0.1 seconds
                 currentMinigameActivationProbability *= 1.01f;
                 currentMinigameActivationProbability = Mathf.Min(currentMinigameActivationProbability, 0.33f);
