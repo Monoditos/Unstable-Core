@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e5880ea30880c44a9f869682ac0470, type: 3}
   m_Name: reactor
   m_EditorClassIdentifier: 
-  word: reactor
+  word: REACTOR
   answer: 52454143546F52
   spawnChance: 10
