@@ -14,6 +14,7 @@ public class EventController : Singleton
 
     public GameObject player;
     public AudioController audioManager;
+    public UiController uiController;
 
     private MovimentoPlayer playerScript;
     // Minigame states
@@ -102,10 +103,9 @@ public class EventController : Singleton
     public static int GetInstability
     {
         get { return instability; }
-        set { 
+        set {
             if(value > 100){
                 instability = 100;
-                // Game Over
             }else if(value < 0){
                 instability = 0;
             }else{
@@ -168,6 +168,11 @@ public class EventController : Singleton
     }
     private void Update()
     {
+        if (GetInstability >= 100)
+        {
+            EndGame();
+        }
+
         // Check for minigame activation
         if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.value < minigameActivationProbability))
         {
@@ -333,5 +338,11 @@ public class EventController : Singleton
                 GetInstability = 100;
                 break;
         }
+    }
+
+    public void EndGame(){
+        uiController = GameObject.Find("UI Canvas").GetComponent<UiController>();
+        uiController.GameOver();
+        Time.timeScale = 0;
     }
 }

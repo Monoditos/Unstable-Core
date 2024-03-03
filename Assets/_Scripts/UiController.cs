@@ -16,7 +16,14 @@ public class UiController : MonoBehaviour
     public Slider instabilityMeter;
     public TMP_Text instabilityText;
 
+    [Header("Game Over Screen")]
+    public GameObject gameOverScreen;
+    public TMP_Text gameOverScore;
+
+    public Timer timer;
+
     void Start() {
+        gameOverScreen.SetActive(false);
         instabilityIndicator.SetActive(false);
     }
 
@@ -26,6 +33,11 @@ public class UiController : MonoBehaviour
         } else {
             instabilityIndicator.SetActive(true);
         }
+    }
+
+    public void GameOver(){
+        gameOverScreen.SetActive(true);
+        gameOverScore.text = "You survived for " + timer.elapsedTime + " seconds!";
     }
 
     void Update() {
