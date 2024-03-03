@@ -38,7 +38,6 @@ public class EventController : Singleton
     private static bool fishingCompleted = false;
 
     // Countdown timer for active minigames
-    private static float minigameTimer = 0f;
 
     public static int instability = 0;
 
@@ -46,6 +45,8 @@ public class EventController : Singleton
     public GameObject hexMenu;
     public GameObject QTEMenu;
     public GameObject FishingMenu;
+
+    public GameObject terminalMenu;
 
 
     public static bool GetTimer
@@ -145,7 +146,7 @@ public class EventController : Singleton
             {
                 if (GetFusebox)
                 {
-                    break;
+                    continue;
                 }
                 GetFusebox = true;
                 GetSwitches = 0;
@@ -156,7 +157,7 @@ public class EventController : Singleton
             {
                 if (GetHexcode)
                 {
-                    break;
+                    continue;
                 }
                 GetHexcode = true;
                 Debug.Log("Hex Binaries scrambled, fix it before critical failure.");
@@ -166,7 +167,7 @@ public class EventController : Singleton
             {
                 if (GetQTE)
                 {
-                    break;
+                    continue;
                 }
                 GetQTE = true;
                 GetStreak = 0;
@@ -177,7 +178,7 @@ public class EventController : Singleton
             {
                 if (GetFishing)
                 {
-                    break;
+                    continue;
                 }
                 GetFishing = true;
                 Debug.Log("Pipes stuck, fix it before critical failure.");
@@ -201,17 +202,18 @@ public class EventController : Singleton
     {
         while (true)
         {
-            yield return new WaitForSeconds(currentWaitTime); // Wait for 3 seconds
+            yield return new WaitForSeconds(currentWaitTime);
 
-            // Calculate if a minigame should activate based on the 15% probability
-            if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.Range(0f, 1f) < initialMinigameActivationProbability))
+            // Calculate if a minigame should activate based on probability
+            if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.Range(0f,1f) < currentMinigameActivationProbability))
             {
+                Debug.Log("ewejbigref");
                 ActivateMinigame();
             }
             else
             {
-                currentWaitTime *= 0.995f; // Decrease wait time by 1% (adjust this value as needed)
-                currentWaitTime = Mathf.Max(currentWaitTime, 1f); // Ensure wait time doesn't go below 0.1 seconds
+                currentWaitTime *= 0.99f;
+                currentWaitTime = Mathf.Max(currentWaitTime, 5f);
                 currentMinigameActivationProbability *= 1.01f;
                 currentMinigameActivationProbability = Mathf.Min(currentMinigameActivationProbability, 0.33f);
 
@@ -247,7 +249,7 @@ public class EventController : Singleton
 
         if (GetFuseboxCompleted)
         {
-            GetInstability -= 5;
+            GetInstability -= 3;
             isCountingFuse = false;
             GetFuseboxCompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
@@ -260,7 +262,7 @@ public class EventController : Singleton
 
         if (GetHexcodeCompleted)
         {
-            GetInstability -= 5;
+            GetInstability -= 3;
             isCountingHex = false;
             GetHexcodeCompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
@@ -271,7 +273,7 @@ public class EventController : Singleton
         }
         if (GetQTECompleted)
         {
-            GetInstability -= 5;
+            GetInstability -= 3;
             isCountingQTE = false;
             GetQTECompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
@@ -283,7 +285,7 @@ public class EventController : Singleton
         }
         if (GetFishingCompleted)
         {
-            GetInstability -= 5;
+            GetInstability -= 3;
             isCountingFishing = false;
             GetFishingCompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
@@ -406,6 +408,11 @@ public class EventController : Singleton
     public void EndGame()
     {
         uiController = GameObject.Find("UI Canvas").GetComponent<UiController>();
+        terminalMenu.gameObject.SetActive(false);
+        fuseboxMenu.gameObject.SetActive(false);
+        hexMenu.gameObject.SetActive(false);
+        FishingMenu.gameObject.SetActive(false);
+        QTEMenu.gameObject.SetActive(false);
         uiController.GameOver();
         Time.timeScale = 0;
     }

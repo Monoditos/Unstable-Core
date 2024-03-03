@@ -41,7 +41,7 @@ public class LightsController : MonoBehaviour
         float endTime = Time.time + duration;
         while (Time.time < endTime)
         {
-            light.intensity = 0;
+            light.intensity = 8f;
             yield return new WaitForSeconds(0.5f);
             light.intensity = 13.69f;
             yield return new WaitForSeconds(0.5f);
