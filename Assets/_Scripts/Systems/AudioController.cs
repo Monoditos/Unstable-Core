@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioController : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class AudioController : MonoBehaviour
 
     public AudioSource musicSource;
     public AudioSource sfxSource;
+
+    [Header("MenuSliders")]
+    public Slider musicSlider;
+    public Slider sfxSlider;
 
     void Awake()
     {
@@ -32,8 +37,14 @@ public class AudioController : MonoBehaviour
     {
         musicAudio = Resources.LoadAll<AudioClip>("Audio/Music");
         sfxAudio = Resources.LoadAll<AudioClip>("Audio/SFX");
-        
-        PlaySoundEffect("ambient_noise_01");
+
+        if(musicSlider != null){
+            musicSlider.value = musicSource.volume;
+        }
+
+        if(sfxSlider != null){
+            sfxSlider.value = sfxSource.volume;
+        }
     }
 
     void Update(){

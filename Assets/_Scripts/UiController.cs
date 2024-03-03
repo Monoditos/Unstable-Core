@@ -44,7 +44,7 @@ public class UiController : MonoBehaviour
             amogus.SetActive(false);
         } else {
            minimap.SetActive(true);
-           amogus.SetActive(true); 
+           amogus.SetActive(true);
         }
     }
 

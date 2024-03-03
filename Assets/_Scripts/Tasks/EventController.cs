@@ -14,6 +14,9 @@ public class EventController : Singleton
     public const float initialWaitTime = 5f;
     public float currentWaitTime;
 
+    private static bool fromCritical = false;
+
+
     public GameObject player;
     private CameraShake cameraShake;
     public AudioController audioManager;
@@ -44,6 +47,12 @@ public class EventController : Singleton
     public GameObject hexMenu;
     public GameObject QTEMenu;
     public GameObject FishingMenu;
+
+    public static bool GetFromCritical
+    {
+        get { return fromCritical; }
+        set { fromCritical = value; }
+    }
 
     public static int GetSwitches
     {
@@ -125,6 +134,7 @@ public class EventController : Singleton
 
     private void ActivateMinigame()
     {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
         audioManager.PlaySoundEffect("somquandopassathreshold");
         while (true)
         {
@@ -237,10 +247,14 @@ public class EventController : Singleton
             GetInstability -= 5;
             isCountingFuse = false;
             GetFuseboxCompleted = false;
+            if(!GetFromCritical){
+                audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
+                audioManager.PlaySoundEffect("taskWin");
+                Debug.Log("Fusebox fixed!");
+            }
+            GetFromCritical = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
-            audioManager.PlaySoundEffect("sommagicocompletaralgo");
             fuseboxMenu.gameObject.SetActive(false);
-            Debug.Log("Fusebox fixed!");
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
         }
@@ -250,8 +264,13 @@ public class EventController : Singleton
             GetInstability -= 5;
             isCountingHex = false;
             GetHexcodeCompleted = false;
+            if(!GetFromCritical){
+                audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
+                audioManager.PlaySoundEffect("taskWin");
+                Debug.Log("Cooling Binaries fixed!");
+            }
+            GetFromCritical = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
-            audioManager.PlaySoundEffect("sommagicocompletaralgo");
             hexMenu.gameObject.SetActive(false);
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
@@ -262,9 +281,13 @@ public class EventController : Singleton
             isCountingQTE = false;
             GetQTECompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
-            audioManager.PlaySoundEffect("sommagicocompletaralgo");
+            if(!GetFromCritical){
+                audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
+                audioManager.PlaySoundEffect("taskWin");
+                Debug.Log("Security door secured!");
+            }
+            GetFromCritical = false;
             QTEMenu.gameObject.SetActive(false);
-            Debug.Log("Security door secured!");
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
         }
@@ -273,9 +296,15 @@ public class EventController : Singleton
             GetInstability -= 5;
             isCountingFishing = false;
             GetFishingCompleted = false;
-            MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
-            audioManager.PlaySoundEffect("sommagicocompletaralgo");
+            GetFromCritical = true;
+            if(!GetFromCritical){
+                MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
+                audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
+            }
+            GetFromCritical = false;
+            audioManager.PlaySoundEffect("taskWin");
             FishingMenu.gameObject.SetActive(false);
+            playerScript = player.GetComponent<MovimentoPlayer>();
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
         }
@@ -367,22 +396,27 @@ public class EventController : Singleton
 
     public static void CriticalError(int game)
     {
+        AudioController audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
+        audioManager.PlaySoundEffect("taskLost");
         switch (game)
         {
             case 1:
                 GetFusebox = false;
                 GetSwitches = 0;
                 GetFuseboxCompleted = true;
+                GetFromCritical = true;
                 GetInstability += 15;
                 break;
             case 2:
                 GetHexcode = false;
                 GetHexcodeCompleted = true;
+                GetFromCritical = true;
                 GetInstability += 15;
                 break;
             case 3:
                 GetQTE = false;
                 GetQTECompleted = true;
+                GetFromCritical = true;
                 GetStreak = 0;
                 GetInstability += 15;
                 break;
