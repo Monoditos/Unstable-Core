@@ -35,6 +35,10 @@ public class FishingMiniGame : MonoBehaviour
         Resize();
     }
 
+    private void OnEnable(){
+        fishPosition = Random.Range(0.2f, 0.5f);
+    }
+
     void Resize()
     {
         Bounds b = hookSpriteRenderer.bounds;
@@ -61,6 +65,7 @@ public class FishingMiniGame : MonoBehaviour
         }
 
         fishPosition = Mathf.SmoothDamp(fishPosition, fishDestination, ref fishSpeed, smoothMotion);
+        Debug.Log(fishPosition);
         fish.position = Vector3.Lerp(bottomPivot.position, topPivot.position, fishPosition);
     }
 
