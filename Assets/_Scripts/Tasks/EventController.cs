@@ -9,10 +9,13 @@ public class EventController : Singleton
     public static EventController instance;
 
     // Constants for minigame probabilities and durations
-    private const float minigameActivationProbability = 0.00065f; // Adjust this value as needed
-
+    private const float initialMinigameActivationProbability = 0.20f; // Adjust this value as needed
+    private float currentMinigameActivationProbability;
+    public const float initialWaitTime = 5f;
+    public float currentWaitTime;
 
     public GameObject player;
+    private CameraShake cameraShake;
     public AudioController audioManager;
     public UiController uiController;
 
@@ -172,17 +175,61 @@ public class EventController : Singleton
             }
         }
     }
+
+    private void Start(){
+
+        currentWaitTime = initialWaitTime;
+        currentMinigameActivationProbability = initialMinigameActivationProbability;
+        StartCoroutine(ActivateMinigameCoroutine());
+
+        cameraShake = player.GetComponentInChildren<CameraShake>();
+
+    }
+    private IEnumerator ActivateMinigameCoroutine()
+
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(currentWaitTime); // Wait for 3 seconds
+
+            // Calculate if a minigame should activate based on the 15% probability
+            if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.Range(0f,1f) < initialMinigameActivationProbability))
+            {
+                ActivateMinigame();
+            } else {
+                currentWaitTime *= 0.995f; // Decrease wait time by 1% (adjust this value as needed)
+                currentWaitTime = Mathf.Max(currentWaitTime, 1f); // Ensure wait time doesn't go below 0.1 seconds
+                currentMinigameActivationProbability *= 1.01f;
+                currentMinigameActivationProbability = Mathf.Min(currentMinigameActivationProbability, 0.33f);
+
+                Debug.Log(currentMinigameActivationProbability + "% Probability");
+                Debug.Log(currentWaitTime + ": Time of Wait");
+            }
+        }
+    }
+
+
     private void Update()
     {
+        if (GetInstability >= 80)
+        {
+            // Activate the cameraShake script
+            if (cameraShake != null)
+            {
+                cameraShake.enabled = true;
+            }
+        }
+        else
+        {
+            // Deactivate the cameraShake script
+            if (cameraShake != null)
+            {
+                cameraShake.enabled = false;
+            }
+        }
         if (GetInstability >= 100)
         {
             EndGame();
-        }
-
-        // Check for minigame activation
-        if ((!GetFusebox || !GetHexcode || !GetFishing || !GetQTE) && (Random.value < minigameActivationProbability))
-        {
-            ActivateMinigame();
         }
 
         if (GetFuseboxCompleted)
