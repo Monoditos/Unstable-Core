@@ -143,6 +143,7 @@ public class EventController : Singleton
 
     private void ActivateMinigame()
     {
+        AudioController audioManager = GameObject.Find("AudioManager").GetComponent<AudioController>();
         audioManager.PlaySoundEffect("somquandopassathreshold");
         while (true)
         {
@@ -326,7 +327,7 @@ public class EventController : Singleton
             {
                 if (Time.time - timeToDamageFuse > 5)
                 {
-                    GetInstability += 100;
+                    GetInstability += 3;
                     isCountingFuse = false;
                     Debug.LogWarning("Fusebox anomaly increasing instability.");
                 }
@@ -344,7 +345,7 @@ public class EventController : Singleton
             {
                 if (Time.time - timeToDamageHex > 5)
                 {
-                    GetInstability += 100;
+                    GetInstability += 3;
                     isCountingHex = false;
                     Debug.LogWarning("Cooling Binaries anomaly increasing instability.");
                 }
@@ -363,7 +364,7 @@ public class EventController : Singleton
                 if (Time.time - timeToDamageQTE > 5)
                 {
                     Debug.LogWarning("Door anomaly increasing instability.");
-                    GetInstability += 100;
+                    GetInstability += 3;
                     isCountingQTE = false;
                 }
             }
@@ -381,7 +382,7 @@ public class EventController : Singleton
                 if (Time.time - timeToDamageFishing > 5)
                 {
                     Debug.LogWarning("Pipes anomaly increasing instability.");
-                    GetInstability += 100;
+                    GetInstability += 3;
                     isCountingFishing = false;
                 }
             }

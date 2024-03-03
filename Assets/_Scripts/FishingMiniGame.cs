@@ -65,7 +65,7 @@ public class FishingMiniGame : MonoBehaviour
         }
 
         fishPosition = Mathf.SmoothDamp(fishPosition, fishDestination, ref fishSpeed, smoothMotion);
-        Debug.Log(fishPosition);
+        //Debug.Log(fishPosition);
         fish.position = Vector3.Lerp(bottomPivot.position, topPivot.position, fishPosition);
     }
 

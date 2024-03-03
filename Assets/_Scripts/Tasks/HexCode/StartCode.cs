@@ -25,7 +25,7 @@ public class StartCode : MonoBehaviour
     {
 
         int randomNum = Random.Range(1, 101);
-        Debug.Log("Random number: " + randomNum);
+        //Debug.Log("Random number: " + randomNum);
         List<Codes> possibleCodes = new List<Codes>();
         foreach (Codes code in codeList)
         {

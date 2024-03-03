@@ -68,6 +68,13 @@ public class AudioController : MonoBehaviour
             }
         }
 
+        if(musicSlider != null){
+            musicSource.volume = musicSlider.value;
+        }
+
+        if(sfxSlider != null){
+            sfxSource.volume = sfxSlider.value;
+        }
     }
 
     public void PlayMusic(string name)
