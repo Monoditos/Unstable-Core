@@ -73,10 +73,11 @@ public class EventController : Singleton
 
     // REACTOR LOGIC
 
-    private void IncreaseInstability()
+    public void IncreaseInstability()
     {
         instability += 10;
-        if(instability >= 100){
+        if (instability >= 100)
+        {
             // Increase reactor instability when a minigame is failed
             instability = 100;
             Debug.Log("Core too unstable, prepare to die!");
@@ -85,10 +86,11 @@ public class EventController : Singleton
         Debug.Log("Instability increased!");
     }
 
-    private void DecreaseInstability()
+    public void DecreaseInstability()
     {
         instability -= 10;
-        if(instability <= 0){
+        if (instability <= 0)
+        {
             // Increase reactor instability when a minigame is failed
             instability = 0;
         }
