@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EventController : Singleton
 {
@@ -15,6 +16,7 @@ public class EventController : Singleton
 
     // Minigame states
     public static int switchCounter = 0;
+    public static int streak = 0;
     private static bool fusebox = false;
     private static bool fuseboxCompleted = false;
     private static bool hexcode = false;
@@ -25,16 +27,20 @@ public class EventController : Singleton
 
     public static int stability = 100;
 
+    public Slider stabilityMeter;
     public GameObject fuseboxMenu;
     public GameObject hexMenu;
     public GameObject QTEMenu;
-
-
 
     public static int GetSwitches
     {
         get { return switchCounter; }
         set { switchCounter = value; }
+    }
+    public static int GetStreak
+    {
+        get { return streak; }
+        set { streak = value; }
     }
 
     public static bool GetFusebox
@@ -68,6 +74,7 @@ public class EventController : Singleton
         // Increase reactor instability when a minigame is failed
         Debug.Log("Instability increased!");
         stability += 10;
+        stabilityMeter.value = stability;
     }
 
     private void DecreaseInstability()
@@ -75,6 +82,7 @@ public class EventController : Singleton
         // Increase reactor instability when a minigame is failed
         Debug.Log("Instability decreased!");
         stability -= 10;
+        stabilityMeter.value = stability;
     }
 
     // MINIGAME EVENT CONTROLLER
@@ -109,7 +117,7 @@ public class EventController : Singleton
 
     private void Start()
     {
-
+        stabilityMeter.value = stability;
     }
 
     private void Update()
@@ -133,7 +141,7 @@ public class EventController : Singleton
                 // Minigame time is up, increase instability or decrease it if completed
                 GetFusebox = false;
                 // Debug.Log("Fusebox minigame time up!");
-                DecreaseInstability();                
+                DecreaseInstability();
             }
             else
             {

@@ -33,6 +33,8 @@ public class MovimentoPlayer : MonoBehaviour
 
     public bool menuopen = false;
 
+    public AudioSource soundSource;
+
     void Start(){
         TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
         TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
@@ -188,6 +190,7 @@ public class MovimentoPlayer : MonoBehaviour
                 break;
         }
     }
+
     // Coroutine to rotate over time
     IEnumerator RotateOverTime(Quaternion targetRotation, float duration)
     {
