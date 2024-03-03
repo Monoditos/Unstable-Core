@@ -88,13 +88,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 426424405216520770, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 426424405216520770, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 1250191293396504372, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
       propertyPath: m_Name
       value: HexMinigame Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1250191293396504372, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1569639567834023341, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
       propertyPath: m_SizeDelta.y
@@ -154,11 +162,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3343777764019073928, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 65.4
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 3343777764019073928, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 61.5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5289949278570639250, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
       propertyPath: m_fontSize
@@ -198,7 +206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5825915879079993023, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
       propertyPath: m_fontSize
-      value: 18
+      value: 21.5
       objectReference: {fileID: 0}
     - target: {fileID: 5825915879079993023, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
       propertyPath: m_fontAsset
@@ -218,7 +226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5825915879079993023, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
       propertyPath: m_fontSizeBase
-      value: 18
+      value: 21.5
       objectReference: {fileID: 0}
     - target: {fileID: 5825915879079993023, guid: 36f662980aa63d44e9c4f6cf075be61f, type: 3}
       propertyPath: m_sharedMaterial
