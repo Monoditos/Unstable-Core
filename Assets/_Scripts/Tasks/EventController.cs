@@ -121,7 +121,7 @@ public class EventController : Singleton
     private void ActivateMinigame()
     {
         // Determine which minigame to activate (for example, randomly)
-        if (Random.value > 0.0001f)
+        if (Random.value < 0.0001f)
         {
             GetFusebox = true;
             // Debug.Log(GetFusebox);
