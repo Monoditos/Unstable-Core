@@ -30,8 +30,6 @@ public class EventController : Singleton
     public GameObject hexMenu;
     public GameObject QTEMenu;
 
-
-
     public static int GetSwitches
     {
         get { return switchCounter; }
