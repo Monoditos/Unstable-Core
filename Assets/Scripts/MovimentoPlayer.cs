@@ -98,13 +98,8 @@ public class MovimentoPlayer : MonoBehaviour
                     string objectName = hit.transform.name;
                     if (menuopen)
                     {
-                        menuopen = false;
-                        isInputDisabled = false;
-                        Debug.Log(isInputDisabled);
                         CloseMenu(objectName);
                     } else {
-                        menuopen = true;
-                        isInputDisabled = true;
                         OpenMenu(objectName);
                     }
                     
@@ -120,23 +115,35 @@ public class MovimentoPlayer : MonoBehaviour
 
     void OpenMenu(string objectName)
     {
+        menuopen = true;
+        isInputDisabled = true;
         // Logic to open the right menu based on objectName
         switch (objectName)
         {
             case "Fusebox":
                 // Open Fusebox menu
-                Debug.Log("Opening Fusebox menu...");
-                FuseboxMenu.gameObject.SetActive(true);
+                if(EventController.GetFusebox){
+                    // Debug.Log("Opening Fusebox menu...");
+                    FuseboxMenu.gameObject.SetActive(true);
+                    } else {
+                        // Debug.Log("nuh uh");
+                        CloseMenu(objectName);
+                    }
+                    
                 break;
 
             case "HexcodePanel":
                 // Open HexcodePanel menu
-                Debug.Log("Opening HexcodePanel menu...");
-                HexMenu.gameObject.SetActive(true);
+                // Debug.Log("Opening HexcodePanel menu...");
+                if(EventController.GetHexcode){
+                    HexMenu.gameObject.SetActive(true);
+                } else {
+                    CloseMenu(objectName);
+                }
                 break;
 
             case "Terminal":
-                Debug.Log("Terminal:");
+                // Debug.Log("Terminal:");
                 Debug.Log("Reactor Stability: " + EventController.instability + "%");
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 400);
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 905);
@@ -145,7 +152,12 @@ public class MovimentoPlayer : MonoBehaviour
                 break;
 
             case "QTE":
+            if(EventController.GetQTE)
+            {
                 QTEMenu.gameObject.SetActive(true);
+            } else {
+                CloseMenu(objectName);
+            }
                 break;
 
             default:
@@ -157,23 +169,25 @@ public class MovimentoPlayer : MonoBehaviour
 
     void CloseMenu(string objectName)
     {
+        menuopen = false;
+        isInputDisabled = false;
         // Logic to open the right menu based on objectName
         switch (objectName)
         {
             case "Fusebox":
                 // Open Fusebox menu
-                Debug.Log("Closing Fusebox menu...");
+                // Debug.Log("Closing Fusebox menu...");
                 FuseboxMenu.gameObject.SetActive(false);
                 break;
 
             case "HexcodePanel":
                 // Open HexcodePanel menu
-                Debug.Log("Closing HexcodePanel menu...");
+                // Debug.Log("Closing HexcodePanel menu...");
                 HexMenu.gameObject.SetActive(false);
                 break;
 
             case "Terminal":
-                Debug.Log("Closing Terminal menu...");
+                // Debug.Log("Closing Terminal menu...");
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0);
                 Transform childTransform = TerminalConsole.transform.Find("Viewport");

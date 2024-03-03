@@ -644,6 +644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872ddc1c1a8588c429bb7907a1b381a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1787430563}
   fuseboxMenu: {fileID: 945582767}
   hexMenu: {fileID: 0}
   QTEMenu: {fileID: 485716846}
@@ -3581,6 +3582,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fillGreen: 5
   greenBar: {fileID: 1547487374}
+--- !u!1 &1787430563 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6703979610224402684, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
+  m_PrefabInstance: {fileID: 5861435720451240685}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1793598678 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2193960460699984471, guid: ea83d2dd290b9ad42ba8b16535b828a6, type: 3}
