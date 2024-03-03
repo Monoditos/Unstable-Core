@@ -167,6 +167,7 @@ public class EventController : Singleton
             GetInstability -= 5;
             isCountingFuse = false;
             GetFuseboxCompleted = false;
+            GetFusebox = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
             fuseboxMenu.gameObject.SetActive(false);
             Debug.Log("Fusebox fixed!");
@@ -179,8 +180,10 @@ public class EventController : Singleton
             GetInstability -= 5;
             isCountingHex = false;
             GetHexcodeCompleted = false;
+            GetHexcode = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
             hexMenu.gameObject.SetActive(false);
+            Debug.Log("Correct code entered!");
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
         }
@@ -189,6 +192,7 @@ public class EventController : Singleton
             GetInstability -= 5;
             isCountingQTE = false;
             GetQTECompleted = false;
+            GetQTE = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
             QTEMenu.gameObject.SetActive(false);
             playerScript.menuopen = false;
@@ -199,6 +203,7 @@ public class EventController : Singleton
             GetInstability -= 5;
             isCountingFishing = false;
             GetFishingCompleted = false;
+            GetFishing = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
             FishingMenu.gameObject.SetActive(false);
             playerScript.menuopen = false;
@@ -214,7 +219,6 @@ public class EventController : Singleton
                 {
                     GetInstability += 2;
                     isCountingFuse = false;
-                    Debug.Log("WAH");
                 }
             }
             else
@@ -232,7 +236,6 @@ public class EventController : Singleton
                 {
                     GetInstability += 2;
                     isCountingHex = false;
-                    Debug.Log("HAW");
                 }
             }
             else
@@ -248,7 +251,6 @@ public class EventController : Singleton
             {
                 if (Time.time - timeToDamageQTE > 5)
                 {
-                    Debug.Log("QTE");
                     GetInstability += 2;
                     isCountingQTE = false;
                 }
@@ -266,7 +268,6 @@ public class EventController : Singleton
             {
                 if (Time.time - timeToDamageFishing > 5)
                 {
-                    Debug.Log("PEixe");
                     GetInstability += 2;
                     isCountingFishing = false;
                 }
