@@ -217,6 +217,7 @@ public class EventController : Singleton
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
             audioManager.PlaySoundEffect("sommagicocompletaralgo");
             QTEMenu.gameObject.SetActive(false);
+            Debug.Log("Security door secured!");
             playerScript.menuopen = false;
             playerScript.isInputDisabled = false;
         }
