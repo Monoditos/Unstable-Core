@@ -53,4 +53,16 @@ public class Leaderbord : MonoBehaviour
         ligacaoBD = null;
 
     }
+
+    public void CreateDB()
+    {
+        Ligacao();
+        IDbCommand cmnd = ligacaoBD.CreateCommand();
+        string q_criarTabelas = "CREATE TABLE IF NOT EXISTS Logs " +
+                                      "(logsID INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(50), " +
+                                      "time REAL);";
+        cmnd.CommandText = q_criarTabelas;
+        cmnd.ExecuteReader();
+        ligacaoBD.Close();
+    }
 }
