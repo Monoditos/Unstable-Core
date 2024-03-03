@@ -37,6 +37,12 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Credits");
     }
 
+    public void OpenRanking()
+    {
+        // Load the ranking scene
+        Debug.Log("Ranking");
+    }
+
     public void QuitGame()
     {
         // Quit the game
