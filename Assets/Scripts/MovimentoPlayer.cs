@@ -41,7 +41,7 @@ public class MovimentoPlayer : MonoBehaviour
     void Start(){
         TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
         TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
-
+n
         UiController = GameObject.Find("UI Canvas").GetComponent<UiController>();
     }
 
