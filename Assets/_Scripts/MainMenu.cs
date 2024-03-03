@@ -7,6 +7,8 @@ public class MainMenu : MonoBehaviour
 {
 
     public GameObject tutorialScreen;
+
+    public GameObject optionsScreen;
     public IEnumerator Tutorial(int seconds)
     {
         Debug.Log("tutorial shown");
@@ -25,7 +27,17 @@ public class MainMenu : MonoBehaviour
     public void OpenOptions()
     {
         // Load the options scene
-        Debug.Log("Options");
+        Debug.Log("Open Options");
+        optionsScreen.SetActive(true);
+
+    }
+
+    public void CloseOptions()
+    {
+        // Load the options scene
+        Debug.Log("Close Options");
+        optionsScreen.SetActive(false);
+
     }
 
     public void OpenCredits()
