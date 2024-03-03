@@ -510,6 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872ddc1c1a8588c429bb7907a1b381a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stabilityMeter: {fileID: 440642360}
   fuseboxMenu: {fileID: 945582767}
   hexMenu: {fileID: 0}
   QTEMenu: {fileID: 485716846}
@@ -4625,6 +4626,10 @@ PrefabInstance:
     - target: {fileID: 6703979610224402684, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
       propertyPath: m_Name
       value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 8242061000083856388, guid: aae0cf3e9f6e02044aea549a3722f269, type: 3}
+      propertyPath: field of view
+      value: 85
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
