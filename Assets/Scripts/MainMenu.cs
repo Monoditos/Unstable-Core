@@ -10,9 +10,8 @@ public class MainMenu : MonoBehaviour
     public IEnumerator FadeIn()
     {
         panel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-        for (int i = 0; i < 255; i++)
-        {
-            panel.GetComponent<Image>().color = new Color(0, 0, 0, i);
+        while (panel.GetComponent<Image>().color.a < 255){
+            panel.GetComponent<Image>().color = new Color(0, 0, 0, panel.GetComponent<Image>().color.a + 1);
             yield return new WaitForSeconds(0.01f);
         }
         //panel.gameObject.SetActive(false);
@@ -35,6 +34,12 @@ public class MainMenu : MonoBehaviour
     {
         // Load the credits scene
         Debug.Log("Credits");
+    }
+
+    public void OpenRanking()
+    {
+        // Load the ranking scene
+        Debug.Log("Ranking");
     }
 
     public void QuitGame()
