@@ -74,6 +74,10 @@ public class QTESystem : MonoBehaviour
         {
             CheckInput(3);
         }
+        else if (Input.GetKeyDown(KeyCode.Y))
+        {
+            CheckInput(4);
+        }
     }
 
     private void CheckInput(int expectedKey)
