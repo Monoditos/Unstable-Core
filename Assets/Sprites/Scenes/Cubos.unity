@@ -220,7 +220,7 @@ RectTransform:
   m_Father: {fileID: 1502964995}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.759, y: 1}
+  m_AnchorMax: {x: 0.855, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.000015259, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.5862711, b: 0.26226407, a: 1}
+  m_Color: {r: 1, g: 0.009747294, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -639,6 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872ddc1c1a8588c429bb7907a1b381a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentWaitTime: 0
   player: {fileID: 1787430563}
   audioManager: {fileID: 1541397523}
   uiController: {fileID: 0}
@@ -1313,7 +1314,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.759
+  m_Value: 0.855
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2886,7 +2887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3660378, g: 0.15798746, b: 0, a: 1}
+  m_Color: {r: 0.23773581, g: 0.23773581, b: 0.23773581, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4061,6 +4062,10 @@ PrefabInstance:
     - target: {fileID: 7503745329882971211, guid: 191eca753c980ba42bddfa6c352b3b5b, type: 3}
       propertyPath: m_Name
       value: minimap
+      objectReference: {fileID: 0}
+    - target: {fileID: 7503745329882971211, guid: 191eca753c980ba42bddfa6c352b3b5b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7525540319232757826, guid: 191eca753c980ba42bddfa6c352b3b5b, type: 3}
       propertyPath: m_IsTrigger
@@ -5814,12 +5819,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29476600b8332f64ab9c7d57a750f1b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minimap: {fileID: 2049339941}
+  amogus: {fileID: 1983503281}
   minimapAlerts:
   - {fileID: 918056049}
   - {fileID: 1522073167}
   - {fileID: 1645833652}
   - {fileID: 518780080}
   instabilityIndicator: {fileID: 680185463}
+  sliderBarFill: {fileID: 105141945}
   instabilityMeter: {fileID: 440642360}
   instabilityText: {fileID: 226079491}
   gameOverScreen: {fileID: 345160957}
@@ -5852,7 +5860,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1983503282
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6276,6 +6284,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36b79e1a7ded1af4d9d086af6da644cc, type: 3}
+--- !u!1 &2049339941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7503745329882971211, guid: 191eca753c980ba42bddfa6c352b3b5b, type: 3}
+  m_PrefabInstance: {fileID: 1280792060}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2068302277
 GameObject:
   m_ObjectHideFlags: 0

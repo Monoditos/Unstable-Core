@@ -9,9 +9,9 @@ public class EventController : Singleton
     public static EventController instance;
 
     // Constants for minigame probabilities and durations
-    private const float initialMinigameActivationProbability = 0.15f; // Adjust this value as needed
+    private const float initialMinigameActivationProbability = 0.20f; // Adjust this value as needed
     private float currentMinigameActivationProbability;
-    public const float initialWaitTime = 3f;
+    public const float initialWaitTime = 5f;
     public float currentWaitTime;
 
     public GameObject player;
@@ -194,10 +194,13 @@ public class EventController : Singleton
             {
                 ActivateMinigame();
             } else {
-                currentWaitTime *= 0.99f; // Decrease wait time by 1% (adjust this value as needed)
+                currentWaitTime *= 0.995f; // Decrease wait time by 1% (adjust this value as needed)
                 currentWaitTime = Mathf.Max(currentWaitTime, 1f); // Ensure wait time doesn't go below 0.1 seconds
                 currentMinigameActivationProbability *= 1.01f;
                 currentMinigameActivationProbability = Mathf.Min(currentMinigameActivationProbability, 0.33f);
+
+                Debug.Log(currentMinigameActivationProbability + "% Probability");
+                Debug.Log(currentWaitTime + ": Time of Wait");
             }
         }
     }
