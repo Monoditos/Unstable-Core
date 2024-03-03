@@ -4745,6 +4745,8 @@ MonoBehaviour:
   sfxAudio: []
   musicSource: {fileID: 241422803}
   sfxSource: {fileID: 375079690}
+  musicSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
 --- !u!4 &1541397524
 Transform:
   m_ObjectHideFlags: 0
@@ -5412,6 +5414,7 @@ MonoBehaviour:
   instabilityText: {fileID: 226079491}
   gameOverScreen: {fileID: 789791248}
   gameOverScore: {fileID: 278167891}
+  audioController: {fileID: 0}
   timer: {fileID: 2112213814}
 --- !u!1 &1983503281
 GameObject:
@@ -6117,6 +6120,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8402928249632610116, guid: 95ef0bf06b462bc4eb02b207d01f8cd2, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8402928249632610116, guid: 95ef0bf06b462bc4eb02b207d01f8cd2, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a4fcc88e29927a4e81e3d5f6b900289, type: 2}
+    - target: {fileID: 8402928249632610116, guid: 95ef0bf06b462bc4eb02b207d01f8cd2, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8402928249632610116, guid: 95ef0bf06b462bc4eb02b207d01f8cd2, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6173,6 +6192,22 @@ PrefabInstance:
     - target: {fileID: 5346061070995041449, guid: 8c1567dd765ce7b4b933afcf5363fba7, type: 3}
       propertyPath: m_Name
       value: LeversGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6435624243461841707, guid: 8c1567dd765ce7b4b933afcf5363fba7, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6435624243461841707, guid: 8c1567dd765ce7b4b933afcf5363fba7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a4fcc88e29927a4e81e3d5f6b900289, type: 2}
+    - target: {fileID: 6435624243461841707, guid: 8c1567dd765ce7b4b933afcf5363fba7, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6435624243461841707, guid: 8c1567dd765ce7b4b933afcf5363fba7, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
