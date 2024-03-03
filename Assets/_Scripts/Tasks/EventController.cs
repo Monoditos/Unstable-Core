@@ -15,6 +15,7 @@ public class EventController : Singleton
     public float currentWaitTime;
 
     public GameObject player;
+    private CameraShake cameraShake;
     public AudioController audioManager;
     public UiController uiController;
 
@@ -181,6 +182,8 @@ public class EventController : Singleton
         currentMinigameActivationProbability = initialMinigameActivationProbability;
         StartCoroutine(ActivateMinigameCoroutine());
 
+        cameraShake = player.GetComponentInChildren<CameraShake>();
+
     }
     private IEnumerator ActivateMinigameCoroutine()
 
@@ -208,6 +211,22 @@ public class EventController : Singleton
 
     private void Update()
     {
+        if (GetInstability >= 80)
+        {
+            // Activate the cameraShake script
+            if (cameraShake != null)
+            {
+                cameraShake.enabled = true;
+            }
+        }
+        else
+        {
+            // Deactivate the cameraShake script
+            if (cameraShake != null)
+            {
+                cameraShake.enabled = false;
+            }
+        }
         if (GetInstability >= 100)
         {
             EndGame();
