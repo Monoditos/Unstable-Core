@@ -16,6 +16,8 @@ public class MovimentoPlayer : MonoBehaviour
     // Timeout duration after movement or rotation
     public float inputTimeoutDuration = 2f;
 
+    public UiController UiController;
+
     public GameObject eventController;
     public GameObject consoleTxt;
     public GameObject TerminalConsole;
@@ -39,6 +41,8 @@ public class MovimentoPlayer : MonoBehaviour
     void Start(){
         TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
         TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
+
+        UiController = GameObject.Find("UI Canvas").GetComponent<UiController>();
     }
 
     // Update is called once per frame
@@ -103,8 +107,6 @@ public class MovimentoPlayer : MonoBehaviour
                     } else {
                         OpenMenu(objectName);
                     }
-                    
-    
                 }
             } else {
                 consoleTxt.SetActive(false);
@@ -150,6 +152,7 @@ public class MovimentoPlayer : MonoBehaviour
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 905);
                 Transform childTransform = TerminalConsole.transform.Find("Viewport");
                 childTransform.gameObject.SetActive(true);
+                UiController.showHideStability();
                 break;
 
             case "QTE":
@@ -201,6 +204,7 @@ public class MovimentoPlayer : MonoBehaviour
                 TerminalConsole.GetComponent<RectTransform>( ).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0);
                 Transform childTransform = TerminalConsole.transform.Find("Viewport");
                 childTransform.gameObject.SetActive(false);
+                UiController.showHideStability();
                 break;
             
             case "QTE":

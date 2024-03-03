@@ -12,11 +12,20 @@ public class UiController : MonoBehaviour
     public GameObject[] minimapAlerts;
     
     [Header("Stability Meter")]
+    public GameObject instabilityIndicator;
     public Slider instabilityMeter;
     public TMP_Text instabilityText;
 
     void Start() {
+        instabilityIndicator.SetActive(false);
+    }
 
+    public void showHideStability() {
+        if (instabilityIndicator.activeSelf) {
+            instabilityIndicator.SetActive(false);
+        } else {
+            instabilityIndicator.SetActive(true);
+        }
     }
 
     void Update() {
