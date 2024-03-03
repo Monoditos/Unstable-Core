@@ -23,6 +23,7 @@ public class MovimentoPlayer : MonoBehaviour
     public GameObject FuseboxMenu;
     public GameObject HexMenu;
     public GameObject QTEMenu;
+    public GameObject FishingMenu;
 
     // Flag to check if rotation is in progress
     private bool isRotating = false;
@@ -152,12 +153,20 @@ public class MovimentoPlayer : MonoBehaviour
                 break;
 
             case "QTE":
-            if(EventController.GetQTE)
-            {
-                QTEMenu.gameObject.SetActive(true);
-            } else {
-                CloseMenu(objectName);
-            }
+                if(EventController.GetQTE)
+                {
+                    QTEMenu.gameObject.SetActive(true);
+                } else {
+                    CloseMenu(objectName);
+                }
+                break;
+            case "Fishing":
+                if(EventController.GetFishing)
+                {
+                    FishingMenu.gameObject.SetActive(true);
+                } else {
+                    CloseMenu(objectName);
+                }
                 break;
 
             default:
@@ -196,6 +205,10 @@ public class MovimentoPlayer : MonoBehaviour
             
             case "QTE":
                 QTEMenu.gameObject.SetActive(false);
+                break;
+
+            case "Fishing":
+                FishingMenu.gameObject.SetActive(false);
                 break;
 
             default:

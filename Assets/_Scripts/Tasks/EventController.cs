@@ -23,10 +23,10 @@ public class EventController : Singleton
     private static bool fuseboxCompleted = false;
     private static bool hexcode = false;
     private static bool hexcodeCompleted = false;
-
     private static bool qte = false;
-
     private static bool qteCompleted = false;
+    private static bool fishing = false;
+    private static bool fishingCompleted = false;
 
     // Countdown timer for active minigames
     private static float minigameTimer = 0f;
@@ -36,6 +36,8 @@ public class EventController : Singleton
     public GameObject fuseboxMenu;
     public GameObject hexMenu;
     public GameObject QTEMenu;
+
+    public GameObject FishingMenu;
 
     public static int GetSwitches
     {
@@ -82,6 +84,18 @@ public class EventController : Singleton
     {
         get { return qteCompleted; }
         set { qteCompleted = value; }
+    }
+
+    public static bool GetFishing
+    {
+        get { return fishing; }
+        set { fishing = value; }
+    }
+
+    public static bool GetFishingCompleted
+    {
+        get { return fishingCompleted; }
+        set { fishingCompleted = value; }
     }
 
     public static int GetInstability
