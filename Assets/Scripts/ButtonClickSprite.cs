@@ -10,7 +10,7 @@ public class ButtonClickSprite : MonoBehaviour
     public Sprite normal;
     public Sprite clicked;
 
-    public float clickTime = 0.5f;
+    public float clickTime = 0.2f;
 
     // Start is called before the first frame update
     void Start()
