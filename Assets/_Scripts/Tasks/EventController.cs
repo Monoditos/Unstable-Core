@@ -103,17 +103,23 @@ public class EventController : Singleton
     public static int GetInstability
     {
         get { return instability; }
-        set {
-            if(value > 100){
+        set
+        {
+            if (value > 100)
+            {
                 instability = 100;
-            }else if(value < 0){
+            }
+            else if (value < 0)
+            {
                 instability = 0;
-            }else{
+            }
+            else
+            {
                 instability = value;
             }
         }
     }
-    
+
     private void ActivateMinigame()
     {
         audioManager.PlaySoundEffect("somquandopassathreshold");
@@ -235,7 +241,7 @@ public class EventController : Singleton
                 {
                     GetInstability += 2;
                     isCountingFuse = false;
-                    Debug.Log("[WARNING] Fusebox anomaly increasing instability.");
+                    Debug.LogWarning("Fusebox anomaly increasing instability.");
                 }
             }
             else
@@ -253,7 +259,7 @@ public class EventController : Singleton
                 {
                     GetInstability += 2;
                     isCountingHex = false;
-                    Debug.Log("[WARNING] Cooling Binaries anomaly increasing instability.");
+                    Debug.LogWarning("Cooling Binaries anomaly increasing instability.");
                 }
             }
             else
@@ -269,7 +275,7 @@ public class EventController : Singleton
             {
                 if (Time.time - timeToDamageQTE > 5)
                 {
-                    Debug.Log("[WARNING] Door anomaly increasing instability.");
+                    Debug.LogWarning("Door anomaly increasing instability.");
                     GetInstability += 2;
                     isCountingQTE = false;
                 }
@@ -287,7 +293,7 @@ public class EventController : Singleton
             {
                 if (Time.time - timeToDamageFishing > 5)
                 {
-                    Debug.Log("[WARNING] Pipes anomaly increasing instability.");
+                    Debug.LogWarning("Pipes anomaly increasing instability.");
                     GetInstability += 2;
                     isCountingFishing = false;
                 }
@@ -340,7 +346,8 @@ public class EventController : Singleton
         }
     }
 
-    public void EndGame(){
+    public void EndGame()
+    {
         uiController = GameObject.Find("UI Canvas").GetComponent<UiController>();
         uiController.GameOver();
         Time.timeScale = 0;
