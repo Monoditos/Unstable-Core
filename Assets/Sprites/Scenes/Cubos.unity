@@ -5842,6 +5842,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FishMiniGame
       objectReference: {fileID: 0}
+    - target: {fileID: 3727676593287182236, guid: e2ff0f7016c43224eaba99ba7daccaeb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6876046466359104754, guid: e2ff0f7016c43224eaba99ba7daccaeb, type: 3}
       propertyPath: timerMultiplier
       value: 8
