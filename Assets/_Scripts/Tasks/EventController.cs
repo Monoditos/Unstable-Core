@@ -274,7 +274,7 @@ public class EventController : Singleton
 
         if (GetHexcodeCompleted)
         {
-            GetInstability -= 3;
+            GetInstability -= 20;
             isCountingHex = false;
             GetHexcodeCompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
@@ -290,7 +290,7 @@ public class EventController : Singleton
         }
         if (GetQTECompleted)
         {
-            GetInstability -= 3;
+            GetInstability -= 20;
             isCountingQTE = false;
             GetQTECompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
@@ -306,7 +306,7 @@ public class EventController : Singleton
         }
         if (GetFishingCompleted)
         {
-            GetInstability -= 3;
+            GetInstability -= 15;
             isCountingFishing = false;
             GetFishingCompleted = false;
             MovimentoPlayer playerScript = player.GetComponent<MovimentoPlayer>();
@@ -416,20 +416,20 @@ public class EventController : Singleton
                 GetSwitches = 0;
                 GetFuseboxCompleted = true;
                 GetFromCritical = true;
-                GetInstability += 15;
+                GetInstability += 2;
                 break;
             case 2:
                 GetHexcode = false;
                 GetHexcodeCompleted = true;
                 GetFromCritical = true;
-                GetInstability += 15;
+                GetInstability += 3;
                 break;
             case 3:
                 GetQTE = false;
                 GetQTECompleted = true;
                 GetFromCritical = true;
                 GetStreak = 0;
-                GetInstability += 5;
+                GetInstability += 3;
                 break;
         }
     }
