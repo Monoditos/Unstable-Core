@@ -11,7 +11,7 @@ public class QTESystem : MonoBehaviour
     private int correct;
     private bool canProcessInput = true; // Flag to control input processing
 
-    public float qteTimerDuration = 1f; // Adjust the timer duration as needed
+    public float qteTimerDuration = 2.5f; // Adjust the timer duration as needed
 
     private void Update()
     {
@@ -116,11 +116,11 @@ public class QTESystem : MonoBehaviour
             EndQTE(2);
         }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
 
         correct = 0;
         keyTxt.text = "";
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
 
         waiting = 0;
         canProcessInput = true; // Enable input processing after coroutine execution
